@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sanyou">
         <activity
+            android:name=".view.login.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.user.UserPageActivity"
             android:exported="true" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".view.viewpager.TabViewPagerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

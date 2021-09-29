@@ -48,7 +48,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@color/login_btn"
+        android:background="@drawable/button_shape"
         android:text="登录"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
