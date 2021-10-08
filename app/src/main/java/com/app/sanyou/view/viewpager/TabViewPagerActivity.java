@@ -27,7 +27,7 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
 
         Fragment[] fragments = new Fragment[]{
                 new ScanFragment(),
-                new CollectFragment(),
+                //new CollectFragment(),
                 new ProjectFragment(),
                 new HistoryFragment(),
                 MineFragment.getInstance(this)
@@ -40,15 +40,15 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
 
         int[] titleIDs = {
                 R.string.scan,
-                R.string.collect,
+                //R.string.collect,
                 R.string.project,
-                R.string.history,
+                R.string.data,
                 R.string.mine
         };
 
         int[] drawableIDs = {
                 R.drawable.main_tab_icon_scan,
-                R.drawable.main_tab_icon_collect,
+                //R.drawable.main_tab_icon_collect,
                 R.drawable.main_tab_icon_project,
                 R.drawable.main_tab_icon_history,
                 R.drawable.main_tab_icon_mine

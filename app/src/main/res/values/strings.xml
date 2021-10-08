@@ -2,9 +2,9 @@
     <string name="app_name">sanyou</string>
 
     <string name="scan">扫码</string>
-    <string name="collect">收藏</string>
+<!--    <string name="collect">收藏</string>-->
     <string name="project">项目</string>
-    <string name="history">历史</string>
+    <string name="data">数据</string>
     <string name="mine">我的</string>
 
 </resources>
