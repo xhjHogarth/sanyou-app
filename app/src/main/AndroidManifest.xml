@@ -16,7 +16,7 @@
             android:name=".view.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".view.user.UserPageActivity"
+            android:name=".view.user.UserInfoActivity"
             android:exported="true" />
         <activity
             android:name=".view.login.ModifyPasswordActivity"

@@ -115,6 +115,9 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
                 }
             }
         });
+
+        tabHost.setCurrentTab(titleIDs.length-1);
+        viewPager.setCurrentItem(titleIDs.length-1);
     }
 
 

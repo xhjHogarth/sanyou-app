@@ -42,7 +42,7 @@ public class HttpUtil {
      * Get请求
      * @param url 请求地址
      */
-    public static void get(String url){
+    public static void get(String url, CallListener listener){
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -54,12 +54,26 @@ public class HttpUtil {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.d(TAG, "onFailure: ");
+                JsonResult jsonResult = new JsonResult();
+                jsonResult.setStatus(ResponseStatus.ERROR);
+                jsonResult.setMsg(e.getMessage());
+                if(listener != null){
+                    listener.failure(jsonResult);
+                }
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Log.d(TAG, "onResponse: " + response.body().string());
+                String json = response.body().string();
+                Gson gson = new Gson();
+                JsonResult jsonResult = gson.fromJson(json,JsonResult.class);
+                if(listener != null){
+                    if(jsonResult.getStatus() == ResponseStatus.SUCCESS){
+                        listener.success(jsonResult);
+                    }else{
+                        listener.failure(jsonResult);
+                    }
+                }
             }
         });
     }

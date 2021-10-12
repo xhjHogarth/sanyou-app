@@ -1,15 +1,14 @@
 package com.app.sanyou.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.solver.GoalRow;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +20,8 @@ import com.app.sanyou.common.JsonResult;
 import com.app.sanyou.constants.Request;
 import com.app.sanyou.entity.User;
 import com.app.sanyou.utils.HttpUtil;
-import com.app.sanyou.view.user.UserPageActivity;
+import com.app.sanyou.view.user.UserInfoActivity;
+import com.app.sanyou.view.viewpager.TabViewPagerActivity;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -55,15 +55,19 @@ public class LoginActivity extends AppCompatActivity {
             edit.putString("username",user.getUsername());
             edit.commit();
 
+            Looper.prepare();
             Toast.makeText(getApplicationContext(),"登录成功!",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this, UserPageActivity.class);
+            Intent intent = new Intent(LoginActivity.this, TabViewPagerActivity.class);
             startActivity(intent);
+            Looper.loop();
         }
 
         @Override
         public void failure(JsonResult result) {
             Log.d(TAG, "onClick: " + gson.toJson(result));
+            Looper.prepare();
             Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show();
+            Looper.loop();
         }
     };
 
