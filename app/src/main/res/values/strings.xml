@@ -7,4 +7,7 @@
     <string name="data">数据</string>
     <string name="mine">我的</string>
 
+    <string name="range_from">开始时间</string>
+    <string name="range_to">结束时间</string>
+
 </resources>

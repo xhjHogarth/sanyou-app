@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 80%"></div>
+    <script type="text/javascript" src="./echarts.min.js"></script>
+<script type="text/javascript">
+    var dom =document.getElementById("container");
+    var myChart =echarts.init(dom);
+    var app ={};
+    //加载实时数据
+    function loadPieChart(dataJson){
+        var data = JSON.parse(dataJson);
+        if (data &&typeof data ==="object") {
+            myChart.setOption(data,true);
+        }
+<!--        myChart.setOption({-->
+<!--            title: {-->
+<!--              text: "检测数据实时统计", //主标题-->
+<!--              x: "center", //x轴方向对齐方式-->
+<!--            },-->
+<!--            tooltip: {-->
+<!--              trigger: "item",-->
+<!--              formatter: "{b}: {c} ({d}%)",-->
+<!--            },-->
+<!--            legend: {-->
+<!--              orient: "vertical",-->
+<!--              bottom: "bottom",-->
+<!--            },-->
+<!--            series: [-->
+<!--              {-->
+<!--                type: "pie",-->
+<!--                radius: "80%",-->
+<!--                center: ["50%", "50%"],-->
+<!--                data: data,-->
+<!--                itemStyle: {-->
+<!--                  emphasis: {-->
+<!--                    shadowBlur: 10,-->
+<!--                    shadowOffsetX: 0,-->
+<!--                    shadowColor: "rgba(0, 0, 0, 0.5)",-->
+<!--                  },-->
+<!--                  normal: {-->
+<!--                    color: function(params) {-->
+<!--                      //自定义颜色-->
+<!--                      var colorList = [-->
+<!--                      '#FF6356', '#FFAD00', '#4CAE85'-->
+<!--                      ];-->
+<!--                      return colorList[params.dataIndex]-->
+<!--                    }-->
+<!--                  }-->
+<!--                },-->
+<!--              },-->
+<!--            ],-->
+<!--          });-->
+    }
+    function loadHistoryLineChart(dataJson){
+        var data = JSON.parse(dataJson);
+        var xAxis = [];
+        var healthData = [];
+        var subHealthData = [];
+        var unHealthData = [];
+        for(var i=0;i<data.length;i++){
+            xAxis.push(data[i].date);
+            healthData.push(data[i].healthValue);
+            subHealthData.push(data[i].subHealthValue);
+            unHealthData.push(data[i].unHealthValue);
+        }
+        myChart.setOption({
+            title: {
+              text: '检测数据历史统计图',
+              left: 'center',
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['健康', '亚健康', '不健康'],
+                bottom: "bottom",
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '6%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: ['1%', '1%'],
+                data: xAxis
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '健康',
+                    type: 'line',
+                    //stack: '总量',
+                    data: healthData,
+                    itemStyle: {color: "#4CAE85"}
+                },
+                {
+                    name: '亚健康',
+                    type: 'line',
+                    //stack: '总量',
+                    data: subHealthData,
+                    itemStyle: {color: "#FFAD00"}
+                },
+                {
+                    name: '不健康',
+                    type: 'line',
+                    //stack: '总量',
+                    data: unHealthData,
+                    itemStyle: {color: "#FF6356"}
+                }
+            ]
+          });
+    }
+    function loadCycleLineChart(dataJson){
+        var data = JSON.parse(dataJson);
+        var xAxis = [];
+        var healthData = [];
+        var subHealthData = [];
+        var unHealthData = [];
+
+        for(var i=0;i<data.length;i++){
+            xAxis.push(data[i].date);
+            healthData.push(data[i].healthValue);
+            subHealthData.push(data[i].subHealthValue);
+            unHealthData.push(data[i].unHealthValue);
+        }
+
+        myChart.setOption({
+            title: {
+              text: '检测数据历史统计图',
+              left: 'center',
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['健康', '亚健康', '不健康'],
+                bottom: "bottom",
+            },
+            grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '6%',
+              containLabel: true
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: ['1%', '1%'],
+              data: xAxis
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                name: '健康',
+                type: 'line',
+                //stack: '总量',
+                data: healthData,
+                itemStyle: {color: "#4CAE85"}
+              },
+              {
+                name: '亚健康',
+                type: 'line',
+                //stack: '总量',
+                data: subHealthData,
+                itemStyle: {color: "#FFAD00"}
+              },
+              {
+                name: '不健康',
+                type: 'line',
+                //stack: '总量',
+                data: unHealthData,
+                itemStyle: {color: "#FF6356"}
+              }
+            ]
+        });
+    }
+    function loadNDLineChart(dataJson){
+        myChart.clear();
+        var list = JSON.parse(dataJson);
+        var xAxis = [];
+        var data = [];
+        for(let i=0;i<list.length;i++){
+            xAxis.push(list[i].name);
+            data.push(list[i].value);
+        }
+        myChart.setOption({
+            title: {
+              text: '检测数据历史统计图',
+              left: 'center',
+            },
+            tooltip: {
+              trigger: 'axis'
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: ['1%', '1%'],
+              data: xAxis
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [{
+              data:data,
+              type:'line'
+            }]
+        });
+    }
+</script>
+</body>
+</html>

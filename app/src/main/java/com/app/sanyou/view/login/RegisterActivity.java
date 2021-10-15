@@ -1,16 +1,15 @@
 package com.app.sanyou.view.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
+import android.os.Looper;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.sanyou.R;
 import com.app.sanyou.common.CallListener;
@@ -21,7 +20,6 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,14 +36,18 @@ public class RegisterActivity extends AppCompatActivity {
     private CallListener listener = new CallListener() {
         @Override
         public void success(JsonResult result) {
+            Looper.prepare();
             Toast.makeText(getApplicationContext(),"注册成功!",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
+            Looper.loop();
         }
 
         @Override
         public void failure(JsonResult result) {
+            Looper.prepare();
             Toast.makeText(getApplicationContext(),"注册失败,请联系管理员!",Toast.LENGTH_SHORT).show();
+            Looper.loop();
         }
     };
 

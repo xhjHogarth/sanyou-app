@@ -44,7 +44,9 @@
                     android:layout_height="wrap_content"
                     android:width="200dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/edit_text"/>
+                    android:background="@android:color/darker_gray"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </LinearLayout>
 
             <LinearLayout
@@ -58,15 +60,16 @@
                     android:width="60dp"
                     android:textSize="15sp"
                     android:text="用户组"/>
+
                 <EditText
                     android:id="@+id/userGroup_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:width="200dp"
                     android:layout_marginLeft="10dp"
+                    android:width="200dp"
+                    android:background="@android:color/darker_gray"
                     android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:background="@drawable/edit_text"/>
+                    android:focusableInTouchMode="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,13 +103,14 @@
                     android:width="60dp"
                     android:textSize="15sp"
                     android:text="性别"/>
-                <EditText
-                    android:id="@+id/sex_text"
+                <Spinner
+                    android:id="@+id/sex_spinner"
+
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:width="200dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/edit_text"/>
+                    android:entries="@array/sex_list"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -128,7 +132,7 @@
                     android:layout_marginLeft="10dp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:background="@drawable/edit_text"/>
+                    android:background="@android:color/darker_gray"/>
             </LinearLayout>
 
             <LinearLayout
@@ -150,7 +154,7 @@
                     android:layout_marginLeft="10dp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:background="@drawable/edit_text"/>
+                    android:background="@android:color/darker_gray"/>
             </LinearLayout>
 
             <LinearLayout
@@ -288,7 +292,9 @@
                     android:layout_height="wrap_content"
                     android:width="200dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/edit_text"/>
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:background="@android:color/darker_gray"/>
             </LinearLayout>
 
             <LinearLayout

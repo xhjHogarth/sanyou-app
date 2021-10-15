@@ -1,35 +1,36 @@
 package com.app.sanyou.view.viewpager;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import android.content.Context;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.app.sanyou.R;
 
 public class TabViewPagerActivity extends AppCompatActivity implements TabHost.TabContentFactory{
 
     private TabHost tabHost;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_view_pager);
 
+        fragmentManager = getFragmentManager();
         Fragment[] fragments = new Fragment[]{
                 new ScanFragment(),
                 //new CollectFragment(),
                 new ProjectFragment(),
-                new HistoryFragment(),
+                HistoryFragment.getInstance(this,fragmentManager),
                 MineFragment.getInstance(this)
         };
 
@@ -118,6 +119,7 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
 
         tabHost.setCurrentTab(titleIDs.length-1);
         viewPager.setCurrentItem(titleIDs.length-1);
+
     }
 
 

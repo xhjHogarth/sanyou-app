@@ -40,4 +40,11 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     //Json解析
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Echarts图表
+    implementation 'com.github.abel533:ECharts:3.0.0.5'
+
+    // 时间选择器
+    implementation 'com.borax12.materialdaterangepicker:library:2.0'
+
 }
