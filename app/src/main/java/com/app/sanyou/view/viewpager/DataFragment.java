@@ -50,9 +50,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class HistoryFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class DataFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private static final String TAG = "HistoryFragment";
+    private static final String TAG = "DataFragment";
     private EchartView chart;
 
     private Spinner echartsSpinner;
@@ -78,11 +78,11 @@ public class HistoryFragment extends Fragment implements DatePickerDialog.OnDate
 
     private Handler handler = new Handler();
 
-    public static HistoryFragment getInstance(Context context,FragmentManager fragmentManager){
-        HistoryFragment historyFragment = new HistoryFragment();
-        historyFragment.context = context;
-        historyFragment.fragmentManager = fragmentManager;
-        return historyFragment;
+    public static DataFragment getInstance(Context context, FragmentManager fragmentManager){
+        DataFragment dataFragment = new DataFragment();
+        dataFragment.context = context;
+        dataFragment.fragmentManager = fragmentManager;
+        return dataFragment;
     }
 
     private CallListener equipmentListener = new CallListener() {
@@ -135,7 +135,7 @@ public class HistoryFragment extends Fragment implements DatePickerDialog.OnDate
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.history_fragment,null);
+        View view = inflater.inflate(R.layout.data_fragment,null);
 
         //初始化view
         initView(view);

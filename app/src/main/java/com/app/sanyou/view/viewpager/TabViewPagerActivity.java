@@ -30,7 +30,7 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
                 new ScanFragment(),
                 //new CollectFragment(),
                 new ProjectFragment(),
-                HistoryFragment.getInstance(this,fragmentManager),
+                DataFragment.getInstance(this,fragmentManager),
                 MineFragment.getInstance(this)
         };
 
