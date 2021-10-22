@@ -27,9 +27,8 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
 
         fragmentManager = getFragmentManager();
         Fragment[] fragments = new Fragment[]{
-                new ScanFragment(),
-                //new CollectFragment(),
-                new ProjectFragment(),
+                ScanFragment.getInstance(this,TabViewPagerActivity.this),
+                ProjectFragment.getInstance(this),
                 DataFragment.getInstance(this,fragmentManager),
                 MineFragment.getInstance(this)
         };
