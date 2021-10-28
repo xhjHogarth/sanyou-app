@@ -1,7 +1,5 @@
 package com.app.sanyou.view.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,10 +7,14 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.sanyou.R;
 import com.app.sanyou.common.CallListener;
@@ -20,7 +22,6 @@ import com.app.sanyou.common.JsonResult;
 import com.app.sanyou.constants.Request;
 import com.app.sanyou.entity.User;
 import com.app.sanyou.utils.HttpUtil;
-import com.app.sanyou.view.user.UserInfoActivity;
 import com.app.sanyou.view.viewpager.TabViewPagerActivity;
 import com.google.gson.Gson;
 
@@ -74,6 +75,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏标题
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); // 设置全屏
+
         setContentView(R.layout.activity_login);
 
         usernameText = findViewById(R.id.username_text);

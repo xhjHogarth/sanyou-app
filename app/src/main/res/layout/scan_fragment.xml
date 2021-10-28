@@ -1,20 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_scan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_scanResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"/>
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/query_text"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/search_btn"/>
+
+    <Button
+        android:id="@+id/search_btn"
+        android:text="查找"
+        android:textColor="@color/white"
+        android:background="@drawable/button_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/btn_scan"/>
+
+    <Button
+        android:id="@+id/btn_scan"
+        android:text="扫一扫"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_shape" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_scan"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:id="@+id/scan_data_ll"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="编码"
+                    android:textSize="15sp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/scan_code_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="不锈钢尺寸"
+                    android:textSize="15sp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/ss_size_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="导电棒尺寸"
+                    android:textSize="15sp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/cr_size_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="阴极板垂直度MAX"
+                    android:textSize="15sp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/verticality_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/detect_count_ll"
+                    android:orientation="vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="检测次数"
+                        android:textSize="15sp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/detect_date_ll"
+                    android:orientation="vertical"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="检测时间"
+                        android:textSize="15sp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/detect_value_ll"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="平面度MAX"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
