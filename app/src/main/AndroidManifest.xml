@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sanyou">
         <activity
+            android:name=".view.user.QuestionFeedbackActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.viewpager.ProjectDetailActivity"
             android:exported="true" />
         <activity

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,10 @@ public class ScanFragment extends Fragment {
     private static final String DECODED_CONTENT_KEY = "codedContent";
     private static final String DECODED_BITMAP_KEY = "codedBitmap";
     private static final int REQUEST_CODE_SCAN = 0x0000;
+
+    private ImageView back_img;
+    private TextView back_text;
+    private TextView title_text;
 
     private LinearLayout scan_data_ll;
     private LinearLayout detect_count_ll;
@@ -135,20 +140,7 @@ public class ScanFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.scan_fragment,null);
 
-        scan_data_ll = view.findViewById(R.id.scan_data_ll);
-        detect_count_ll = view.findViewById(R.id.detect_count_ll);
-        detect_date_ll = view.findViewById(R.id.detect_date_ll);
-        detect_value_ll = view.findViewById(R.id.detect_value_ll);
-
-        tv_scanResult = view.findViewById(R.id.tv_scanResult);
-        btn_scan = view.findViewById(R.id.btn_scan);
-
-        scan_code_text = view.findViewById(R.id.scan_code_text);
-        ss_size_text = view.findViewById(R.id.ss_size_text);
-        cr_size_text = view.findViewById(R.id.cr_size_text);
-        verticality_text = view.findViewById(R.id.verticality_text);
-        search_btn = view.findViewById(R.id.search_btn);
-        query_text = view.findViewById(R.id.query_text);
+        initView(view);
 
         //扫码按钮点击事件
         btn_scan.setOnClickListener(v -> {
@@ -171,6 +163,35 @@ public class ScanFragment extends Fragment {
         });
 
         return view;
+    }
+
+    /**
+     * 初始化view
+     */
+    private void initView(View view){
+        //初始化顶部栏
+        back_img = view.findViewById(R.id.back_img);
+        back_text = view.findViewById(R.id.back_text);
+        title_text = view.findViewById(R.id.title_text);
+        //隐藏返回按钮和文字
+        back_img.setVisibility(View.GONE);
+        back_text.setVisibility(View.GONE);
+        title_text.setText("扫码");
+
+        scan_data_ll = view.findViewById(R.id.scan_data_ll);
+        detect_count_ll = view.findViewById(R.id.detect_count_ll);
+        detect_date_ll = view.findViewById(R.id.detect_date_ll);
+        detect_value_ll = view.findViewById(R.id.detect_value_ll);
+
+        tv_scanResult = view.findViewById(R.id.tv_scanResult);
+        btn_scan = view.findViewById(R.id.btn_scan);
+
+        scan_code_text = view.findViewById(R.id.scan_code_text);
+        ss_size_text = view.findViewById(R.id.ss_size_text);
+        cr_size_text = view.findViewById(R.id.cr_size_text);
+        verticality_text = view.findViewById(R.id.verticality_text);
+        search_btn = view.findViewById(R.id.search_btn);
+        query_text = view.findViewById(R.id.query_text);
     }
 
     /**

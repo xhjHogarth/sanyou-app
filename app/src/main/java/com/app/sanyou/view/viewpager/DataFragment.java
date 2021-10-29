@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,10 @@ public class DataFragment extends Fragment implements DatePickerDialog.OnDateSet
     private Spinner equipmentsSpinner;
     private TextView dateText;
     private Button searchBtn;
+
+    private ImageView back_img;
+    private TextView back_text;
+    private TextView title_text;
 
     private Context context;
     private FragmentManager fragmentManager;
@@ -207,6 +212,15 @@ public class DataFragment extends Fragment implements DatePickerDialog.OnDateSet
         dateText = view.findViewById(R.id.date_text);
         searchBtn = view.findViewById(R.id.search_btn);
         chart = view.findViewById(R.id.chart);
+
+        //初始化顶部栏
+        back_img = view.findViewById(R.id.back_img);
+        back_text = view.findViewById(R.id.back_text);
+        title_text = view.findViewById(R.id.title_text);
+        //隐藏返回按钮和文字
+        back_img.setVisibility(View.GONE);
+        back_text.setVisibility(View.GONE);
+        title_text.setText("数据中心");
     }
 
     private void refreshChart(String chartType){

@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +31,10 @@ import com.google.gson.Gson;
 import java.util.List;
 
 public class ProjectFragment extends Fragment {
+
+    private ImageView back_img;
+    private TextView back_text;
+    private TextView title_text;
 
     private ExpandableListView expandableListView;
     private ProjectAdapter projectAdapter;
@@ -68,7 +74,7 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.project_fragment,null);
 
-        expandableListView = view.findViewById(R.id.elv);
+        initView(view);
 
         userId = UserUtil.getUserId(context);
         if(StringUtil.isNull(userId)){
@@ -79,5 +85,18 @@ public class ProjectFragment extends Fragment {
         HttpUtil.get(Request.URL + "/app/project/getProjectList?userId=" + userId,projectListListener);
 
         return view;
+    }
+
+    private void initView(View view){
+        expandableListView = view.findViewById(R.id.elv);
+
+        //初始化顶部栏
+        back_img = view.findViewById(R.id.back_img);
+        back_text = view.findViewById(R.id.back_text);
+        title_text = view.findViewById(R.id.title_text);
+        //隐藏返回按钮和文字
+        back_img.setVisibility(View.GONE);
+        back_text.setVisibility(View.GONE);
+        title_text.setText("项目列表");
     }
 }

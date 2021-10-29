@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar" />
+
     <TextView
         android:visibility="gone"
         android:id="@+id/tv_scanResult"
@@ -17,7 +21,8 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_toLeftOf="@+id/search_btn"/>
+        android:layout_toLeftOf="@+id/search_btn"
+        android:layout_below="@+id/title_bar"/>
 
     <Button
         android:id="@+id/search_btn"
@@ -28,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/btn_scan"/>
+        android:layout_toLeftOf="@+id/btn_scan"
+        android:layout_below="@+id/title_bar"/>
 
     <Button
         android:id="@+id/btn_scan"
@@ -39,7 +45,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/button_shape" />
+        android:background="@drawable/button_shape"
+        android:layout_below="@+id/title_bar"/>
 
     <ScrollView
         android:id="@+id/scroll_view"
