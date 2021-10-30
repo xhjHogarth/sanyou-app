@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.app.sanyou.R;
 import com.app.sanyou.utils.UserUtil;
 import com.app.sanyou.view.login.LoginActivity;
+import com.app.sanyou.view.user.HistoryRecordActivity;
 import com.app.sanyou.view.user.QuestionFeedbackActivity;
 import com.app.sanyou.view.user.UserInfoActivity;
 
@@ -100,7 +101,10 @@ public class MineFragment extends Fragment {
 
 
         //跳转到历史记录
-
+        history_ll.setOnClickListener(v->{
+            Intent intent = new Intent(context, HistoryRecordActivity.class);
+            startActivity(intent);
+        });
 
         //跳转到问题反馈
         help_ll.setOnClickListener(v->{

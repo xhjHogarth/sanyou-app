@@ -2,5 +2,5 @@ package com.app.sanyou.constants;
 
 public class Request {
 
-    public static final String URL = "http://10.65.1.13:8081";
+    public static final String URL = "http://192.168.1.109:8081";
 }

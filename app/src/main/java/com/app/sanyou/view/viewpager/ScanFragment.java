@@ -33,6 +33,8 @@ import com.app.sanyou.entity.IndustryData;
 import com.app.sanyou.entity.VerticalityDataVo;
 import com.app.sanyou.utils.HttpUtil;
 import com.app.sanyou.utils.StringUtil;
+import com.app.sanyou.utils.UserUtil;
+import com.app.sanyou.view.login.LoginActivity;
 import com.app.sanyou.zxing.android.CaptureActivity;
 import com.google.gson.Gson;
 
@@ -158,7 +160,13 @@ public class ScanFragment extends Fragment {
             if(StringUtil.isNull(scanCode)){
                 Toast.makeText(context,"阴极板编码不能为空!",Toast.LENGTH_SHORT).show();
             }else{
-                HttpUtil.get(Request.URL + "/app/scancode/getInfo?scanCode=" + scanCode,scanListener);
+                String userId = UserUtil.getUserId(context);
+                if(StringUtil.isNull(userId)){
+                    UserUtil.loginOut(context);
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    startActivity(intent);
+                }
+                HttpUtil.get(Request.URL + "/app/scancode/getInfo?scanCode=" + scanCode + "&userId=" + userId,scanListener);
             }
         });
 
