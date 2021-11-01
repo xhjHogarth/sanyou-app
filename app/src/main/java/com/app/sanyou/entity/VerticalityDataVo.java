@@ -30,6 +30,10 @@ public class VerticalityDataVo {
      */
     private Integer state;
     /**
+     * 阴极板是否收藏(1-收藏,2-未收藏)
+     */
+    private int collectStatus;
+    /**
      * 阴极板动态检测数据
      */
     private List<IndustryData> industryDataList;
@@ -88,5 +92,14 @@ public class VerticalityDataVo {
 
     public void setIndustryDataList(List<IndustryData> industryDataList) {
         this.industryDataList = industryDataList;
+    }
+
+
+    public int getCollectStatus() {
+        return collectStatus;
+    }
+
+    public void setCollectStatus(int collectStatus) {
+        this.collectStatus = collectStatus;
     }
 }

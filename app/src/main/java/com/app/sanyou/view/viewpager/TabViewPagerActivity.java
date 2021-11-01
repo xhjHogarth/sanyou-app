@@ -3,6 +3,7 @@ package com.app.sanyou.view.viewpager;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class TabViewPagerActivity extends AppCompatActivity implements TabHost.T
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         setContentView(R.layout.activity_tab_view_pager);
 
