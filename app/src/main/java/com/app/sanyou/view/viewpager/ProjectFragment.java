@@ -7,13 +7,14 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.sanyou.R;
 import com.app.sanyou.common.CallListener;
@@ -24,7 +25,7 @@ import com.app.sanyou.utils.HttpUtil;
 import com.app.sanyou.utils.JsonUtil;
 import com.app.sanyou.utils.StringUtil;
 import com.app.sanyou.utils.UserUtil;
-import com.app.sanyou.view.adapter.ProjectAdapter;
+import com.app.sanyou.view.adapter.ProjectListAdapter;
 import com.app.sanyou.view.login.LoginActivity;
 import com.google.gson.Gson;
 
@@ -36,8 +37,8 @@ public class ProjectFragment extends Fragment {
     private TextView back_text;
     private TextView title_text;
 
-    private ExpandableListView expandableListView;
-    private ProjectAdapter projectAdapter;
+    private RecyclerView rv;
+    private ProjectListAdapter projectListAdapter;
     private Context context;
 
     private List<ProjectVo> projectList;
@@ -58,8 +59,8 @@ public class ProjectFragment extends Fragment {
         public void success(JsonResult result) {
             projectList = JsonUtil.jsonToList(result.getData(),ProjectVo[].class);
             handler.post(() -> {
-                projectAdapter = new ProjectAdapter(context,projectList);
-                expandableListView.setAdapter(projectAdapter);
+
+                projectListAdapter.setDataSource(projectList);
             });
         }
 
@@ -88,7 +89,10 @@ public class ProjectFragment extends Fragment {
     }
 
     private void initView(View view){
-        expandableListView = view.findViewById(R.id.elv);
+        rv = view.findViewById(R.id.rv);
+        projectListAdapter = new ProjectListAdapter(context);
+        rv.setLayoutManager(new LinearLayoutManager(context));
+        rv.setAdapter(projectListAdapter);
 
         //初始化顶部栏
         back_img = view.findViewById(R.id.back_img);

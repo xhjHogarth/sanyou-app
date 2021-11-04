@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".view.viewpager.ProjectDetailActivity">
 
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -17,56 +20,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:textSize="20sp"
-            android:text="订单名称:"
+            android:text="项目名称:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/contractNameText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="阴极板起始编码:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/codeStartText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="阴极板结束编码:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/codeEndText"
+            android:id="@+id/projectNameText"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -184,4 +143,27 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:textSize="20sp"
+            android:text="合同编号"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+        <TextView
+            android:textSize="20sp"
+            android:text="合同名称"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

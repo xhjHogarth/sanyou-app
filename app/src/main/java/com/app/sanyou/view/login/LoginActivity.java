@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +31,10 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
+
+    private ImageView back_img;
+    private TextView back_text;
+    private TextView title_text;
 
     private EditText usernameText;
     private EditText passwordText;
@@ -75,19 +79,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏标题
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); // 设置全屏
-
         setContentView(R.layout.activity_login);
 
-        usernameText = findViewById(R.id.username_text);
-        passwordText = findViewById(R.id.password_text);
-        loginBtn = findViewById(R.id.login_btn);
-        registerView = findViewById(R.id.register_view);
-        modifyPasswordView = findViewById(R.id.modify_password_view);
-
+        initView();
 
         loginBtn.setOnClickListener(view -> {
 
@@ -121,5 +115,22 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this,ModifyPasswordActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void initView() {
+        //初始化顶部栏
+        back_img = findViewById(R.id.back_img);
+        back_text = findViewById(R.id.back_text);
+        title_text = findViewById(R.id.title_text);
+        //隐藏返回按钮和文字
+        back_img.setVisibility(View.GONE);
+        back_text.setVisibility(View.GONE);
+        title_text.setText("用户登录");
+
+        usernameText = findViewById(R.id.username_text);
+        passwordText = findViewById(R.id.password_text);
+        loginBtn = findViewById(R.id.login_btn);
+        registerView = findViewById(R.id.register_view);
+        modifyPasswordView = findViewById(R.id.modify_password_view);
     }
 }

@@ -30,8 +30,78 @@ public class ProjectVo {
 
     private Date createtime;
 
+    private String factoryName;
     private String projectName;
     private List<ContractData> contractDataList;
+
+    /**
+     * 阴极板总数
+     */
+    private int totalNum;
+    /**
+     * 使用中的阴极板总数
+     */
+    private int usingNum;
+    /**
+     * 维修中的阴极板总数
+     */
+    private int maintainNum;
+    /**
+     * 备用的阴极板总数
+     */
+    private int reserveNum;
+    /**
+     * 报废的阴极板总数
+     */
+    private int deprecatedNum;
+
+    public int getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(int totalNum) {
+        this.totalNum = totalNum;
+    }
+
+    public int getUsingNum() {
+        return usingNum;
+    }
+
+    public void setUsingNum(int usingNum) {
+        this.usingNum = usingNum;
+    }
+
+    public int getMaintainNum() {
+        return maintainNum;
+    }
+
+    public void setMaintainNum(int maintainNum) {
+        this.maintainNum = maintainNum;
+    }
+
+    public int getReserveNum() {
+        return reserveNum;
+    }
+
+    public void setReserveNum(int reserveNum) {
+        this.reserveNum = reserveNum;
+    }
+
+    public int getDeprecatedNum() {
+        return deprecatedNum;
+    }
+
+    public void setDeprecatedNum(int deprecatedNum) {
+        this.deprecatedNum = deprecatedNum;
+    }
+
+    public String getFactoryName() {
+        return factoryName;
+    }
+
+    public void setFactoryName(String factoryName) {
+        this.factoryName = factoryName;
+    }
 
     public String getProjectId() {
         return projectId;
