@@ -7,7 +7,9 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,10 @@ import com.google.gson.Gson;
 public class UserInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "UserInfoActivity";
+
+    private ImageView back_img;
+    private TextView back_text;
+    private TextView title_text;
 
     private EditText usernameText;
     private EditText userGroupText;
@@ -136,9 +142,17 @@ public class UserInfoActivity extends AppCompatActivity {
 
         //初始化View
         initView();
+        //初始化点击事件
+        initClickListener();
     }
 
     private void initView() {
+        //初始化顶部栏
+        back_img = findViewById(R.id.back_img);
+        back_text = findViewById(R.id.back_text);
+        title_text = findViewById(R.id.title_text);
+        title_text.setText("个人信息");
+
         usernameText = findViewById(R.id.username_text);
         userGroupText = findViewById(R.id.userGroup_text);
         realNameText = findViewById(R.id.realName_text);
@@ -224,6 +238,16 @@ public class UserInfoActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void initClickListener(){
+        //返回
+        back_img.setOnClickListener(v->{
+            finish();
+        });
+        back_text.setOnClickListener(v->{
+            finish();
+        });
     }
 
     @Override

@@ -172,64 +172,11 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
         intent.setType("image/*");
         startActivityForResult(intent,0);
 
-//        final CharSequence[] items = {"相册","拍照"};
-//        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-//        dialog.setTitle("添加图片");
-//        dialog.setItems(items, (dlg, which) -> {
-//            if(which == 0){
-//
-//            }else{
-//                try {
-//                    Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//                    mPhotoPath = getSDPath() + "/" + getPhotoFileName();
-//                    mPhotoFile = new File(mPhotoPath);
-//                    if(!mPhotoFile.exists()){
-//                        mPhotoFile.createNewFile();
-//                    }
-//                    uriImage = FileProvider.getUriForFile(this,"com.app.sanyou.provider",mPhotoFile);
-//                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                    intent.putExtra(MediaStore.EXTRA_OUTPUT,uriImage);
-//                    startActivityForResult(intent,1);
-//                }catch (Exception e){
-//
-//                }
-//            }
-//        }).create();
-//        dialog.show();
-
     }
-
-//    private String getSDPath(){
-//        File sdDir = null;
-//        boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-//        if(sdCardExist){
-//            sdDir = Environment.getExternalStorageDirectory();
-//        }
-//        return sdDir.toString();
-//    }
-//
-//    private String getPhotoFileName(){
-//        Date date = new Date(System.currentTimeMillis());
-//        SimpleDateFormat sdf = new SimpleDateFormat("'IMG'_yyyyMMdd_HHmmss");
-//        return sdf.format(date) + ".jpg";
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == 1){
-//            BitmapFactory.Options options = new BitmapFactory.Options();
-//            options.inSampleSize = 2;
-//            Bitmap bitmap = BitmapFactory.decodeFile(mPhotoPath,options);
-//            if(bitmap != null){
-//                if(uriImage != null){
-//                    saveUritoFile(uriImage,1);
-//                }
-//                if(!bitmap.isRecycled()){
-//                    bitmap.recycle();
-//                }
-//            }
-//        }
 
         if(requestCode == 0){
             if(data != null){
@@ -247,12 +194,9 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
                 options.inSampleSize = 2;
                 photoBmp = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uriImage),null,options);
                 File file = new File("");
-//                if(type == 0){
-//
-//                }else{
-//                    if(mPhotoFile != null)
-//                        file = mPhotoFile;
-//                }
+                if(type == 0){
+
+                }
                 fileList.add(new LoadFileVo(file,false,photoBmp));
                 tvNum.setText((fileList.size()-1) + "/2");
 

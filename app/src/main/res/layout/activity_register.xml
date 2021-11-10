@@ -7,21 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".view.login.RegisterActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@mipmap/ic_launcher" />
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar"/>
+
 
     <EditText
         android:id="@+id/username_text"
         android:layout_width="250dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/title_bar"
         android:hint="请输入用户名"
         android:inputType="textPersonName"
         android:background="@drawable/edit_text" />
@@ -52,7 +49,7 @@
         android:id="@+id/register_btn"
         android:layout_width="134dp"
         android:layout_height="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/confirm_password_text"
         android:text="注册"

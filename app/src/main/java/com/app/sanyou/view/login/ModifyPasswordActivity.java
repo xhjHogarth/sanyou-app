@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModifyPasswordActivity extends AppCompatActivity {
+
+    private ImageView back_img;
+    private TextView back_text;
+    private TextView title_text;
 
     private EditText usernameText;
     private EditText passwordText;
@@ -55,16 +59,34 @@ public class ModifyPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏标题
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); // 设置全屏
-
         setContentView(R.layout.activity_modify_password);
+
+        initView();
+        //初始化点击事件
+        initClickListener();
+    }
+
+    private void initView(){
+        //初始化顶部栏
+        back_img = findViewById(R.id.back_img);
+        back_text = findViewById(R.id.back_text);
+        title_text = findViewById(R.id.title_text);
+        title_text.setText("修改密码");
 
         usernameText = findViewById(R.id.username_text);
         passwordText = findViewById(R.id.password_text);
         confirmPasswordText = findViewById(R.id.confirm_password_text);
         modifyPasswordBtn = findViewById(R.id.modify_password_btn);
+    }
+
+    private void initClickListener(){
+        //返回
+        back_img.setOnClickListener(v->{
+            finish();
+        });
+        back_text.setOnClickListener(v->{
+            finish();
+        });
 
         modifyPasswordBtn.setOnClickListener(view -> {
             username = usernameText.getText().toString();
