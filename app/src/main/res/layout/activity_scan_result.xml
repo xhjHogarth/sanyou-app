@@ -16,15 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/title_bar"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:id="@+id/scan_data_ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical">
+            android:layout_marginRight="10dp">
 
             <LinearLayout
                 android:id="@+id/code_ll"
@@ -66,48 +66,57 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/verticality_ll"
                 android:layout_marginTop="10dp">
 
-                <LinearLayout
-                    android:id="@+id/detect_count_ll"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="检测次数"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/detect_date_ll"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="检测时间"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/detect_value_ll"
+                <!-- 折叠列表 -->
+                <ExpandableListView
+                    android:id="@+id/verticality_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:groupIndicator="@null"
+                    android:divider="@null"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="平面度MAX"
-                        android:textSize="15sp" />
-                </LinearLayout>
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/detect_count_ll"-->
+                <!--                    android:layout_width="100dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="100dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:text="检测次数"-->
+                <!--                        android:textSize="15sp" />-->
+                <!--                </LinearLayout>-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/detect_date_ll"-->
+                <!--                    android:layout_width="150dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="150dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:text="检测时间"-->
+                <!--                        android:textSize="15sp" />-->
+                <!--                </LinearLayout>-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/detect_value_ll"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:text="平面度MAX"-->
+                <!--                        android:textSize="15sp" />-->
+                <!--                </LinearLayout>-->
 
             </LinearLayout>
 

@@ -2,7 +2,6 @@ package com.app.sanyou.view.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,18 +40,14 @@ public class RegisterActivity extends AppCompatActivity {
     private CallListener listener = new CallListener() {
         @Override
         public void success(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),"注册成功!",Toast.LENGTH_SHORT).show();
+            RegisterActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"注册成功!",Toast.LENGTH_SHORT).show());
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
-            Looper.loop();
         }
 
         @Override
         public void failure(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),"注册失败,请联系管理员!",Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            RegisterActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"注册失败,请联系管理员!",Toast.LENGTH_SHORT).show());
         }
     };
 

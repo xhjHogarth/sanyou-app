@@ -1,6 +1,5 @@
 package com.app.sanyou.view.viewpager;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,21 +7,26 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.app.sanyou.R;
+import com.app.sanyou.common.CallListener;
+import com.app.sanyou.common.JsonResult;
+import com.app.sanyou.constants.Request;
+import com.app.sanyou.utils.HttpUtil;
 import com.app.sanyou.utils.StringUtil;
 import com.app.sanyou.utils.UserUtil;
 import com.app.sanyou.view.login.LoginActivity;
@@ -34,20 +38,34 @@ public class ScanFragment extends Fragment {
     private static final String DECODED_BITMAP_KEY = "codedBitmap";
     private static final int REQUEST_CODE_SCAN = 0x0000;
 
-    private ImageView back_img;
-    private TextView back_text;
-    private TextView title_text;
+    private TextView search_btn;
+    private EditText query_text;
+    private ImageView ivDelete;
 
     private Button btn_scan;
-    private Button search_btn;
-    private TextView query_text;
     private TextView tv_scanResult;
 
     private Context context;
     private TabViewPagerActivity tabViewPagerActivity;
 
+    private String scanCode;
+
     private Handler handler = new Handler();
 
+    private CallListener checkExistListener = new CallListener() {
+        @Override
+        public void success(JsonResult result) {
+            Intent intent = new Intent(context, ScanResultActivity.class);
+            intent.putExtra("scanCode",scanCode);
+            intent.putExtra("tag","1");
+            startActivity(intent);
+        }
+
+        @Override
+        public void failure(JsonResult result) {
+            getActivity().runOnUiThread(()->Toast.makeText(context,"阴极板不存在!",Toast.LENGTH_SHORT).show());
+        }
+    };
 
     public static ScanFragment getInstance(Context context,TabViewPagerActivity tabViewPagerActivity) {
         ScanFragment scanFragment = new ScanFragment();
@@ -66,7 +84,6 @@ public class ScanFragment extends Fragment {
         //初始化点击事件
         initClickListener();
 
-
         return view;
     }
 
@@ -74,20 +91,12 @@ public class ScanFragment extends Fragment {
      * 初始化view
      */
     private void initView(View view){
-        //初始化顶部栏
-        back_img = view.findViewById(R.id.back_img);
-        back_text = view.findViewById(R.id.back_text);
-        title_text = view.findViewById(R.id.title_text);
-        //隐藏返回按钮和文字
-        back_img.setVisibility(View.GONE);
-        back_text.setVisibility(View.GONE);
-        title_text.setText("扫码");
+//        tv_scanResult = view.findViewById(R.id.tv_scanResult);
+//        btn_scan = view.findViewById(R.id.btn_scan);
 
-        tv_scanResult = view.findViewById(R.id.tv_scanResult);
-
-        btn_scan = view.findViewById(R.id.btn_scan);
         search_btn = view.findViewById(R.id.search_btn);
         query_text = view.findViewById(R.id.query_text);
+        ivDelete = view.findViewById(R.id.ivDelete);
     }
 
     /**
@@ -95,18 +104,46 @@ public class ScanFragment extends Fragment {
      */
     private void initClickListener(){
         //扫码按钮点击事件
-        btn_scan.setOnClickListener(v -> {
-            //动态权限申请
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(tabViewPagerActivity, new String[]{Manifest.permission.CAMERA}, 1);
-            } else {
-                goScan();
+//        btn_scan.setOnClickListener(v -> {
+//            //动态权限申请
+//            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(tabViewPagerActivity, new String[]{Manifest.permission.CAMERA}, 1);
+//            } else {
+//                goScan();
+//            }
+//        });
+
+        //设置删除图片的点击事件
+        ivDelete.setOnClickListener(v->{
+            query_text.setText("");
+            ivDelete.setVisibility(View.GONE);
+        });
+
+        //EditText添加监听
+        query_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0)
+                    ivDelete.setVisibility(View.GONE);
+                else{
+                    ivDelete.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
         //搜索按钮的点击事件
         search_btn.setOnClickListener(v->{
-            String scanCode = query_text.getText().toString();
+            scanCode = query_text.getText().toString();
             if(StringUtil.isNull(scanCode)){
                 Toast.makeText(context,"阴极板编码不能为空!",Toast.LENGTH_SHORT).show();
             }else{
@@ -116,10 +153,9 @@ public class ScanFragment extends Fragment {
                     Intent intent = new Intent(context, LoginActivity.class);
                     startActivity(intent);
                 }
-                Intent intent = new Intent(context, ScanResultActivity.class);
-                intent.putExtra("scanCode",scanCode);
-                intent.putExtra("tag","1");
-                startActivity(intent);
+
+                //判断阴极板是否存在
+                HttpUtil.get(Request.URL + "/app/verticality/checkExist?code=" + scanCode,checkExistListener);
             }
         });
     }

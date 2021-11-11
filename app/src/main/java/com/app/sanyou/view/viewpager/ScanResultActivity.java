@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,10 +26,12 @@ import com.app.sanyou.entity.VerticalityDataVo;
 import com.app.sanyou.utils.HttpUtil;
 import com.app.sanyou.utils.StringUtil;
 import com.app.sanyou.utils.UserUtil;
+import com.app.sanyou.view.adapter.ScanResultListAdapter;
 import com.app.sanyou.view.login.LoginActivity;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,11 +43,10 @@ public class ScanResultActivity extends AppCompatActivity {
 
     private TextView scan_code_text;
     private Spinner statusSelector;
-    private LinearLayout detect_count_ll;
-    private LinearLayout detect_date_ll;
-    private LinearLayout detect_value_ll;
     private ImageView collect_img;
     private ImageView browse_img;
+
+    private ExpandableListView verticality_list;
 
     private String userId;
     private String scanCode;
@@ -68,7 +68,7 @@ public class ScanResultActivity extends AppCompatActivity {
             verticalityDataVo = gson.fromJson(gson.toJson(result.getData()), VerticalityDataVo.class);
             handler.post(() -> {
                 if(verticalityDataVo == null || StringUtil.isNull(verticalityDataVo.getVerticalityId())){
-                    Toast.makeText(ScanResultActivity.this,"阴极板不存在!",Toast.LENGTH_SHORT).show();
+                    ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"阴极板不存在!",Toast.LENGTH_SHORT).show());
                     finish();
                 }else{
                     scanCode = verticalityDataVo.getVerticalityId();
@@ -88,27 +88,20 @@ public class ScanResultActivity extends AppCompatActivity {
                         statusSelector.setSelection(0);
                     }
 
+                    ScanResultListAdapter scanResultListAdapter = new ScanResultListAdapter(ScanResultActivity.this);
+
+
                     if(industryDataList != null && industryDataList.size()>0){
                         industryDataList = industryDataList.stream().sorted((o1,o2)-> o2.getDatatime().compareTo(o1.getDatatime())).collect(Collectors.toList());
-                        int count = industryDataList.size();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                        for (IndustryData industryData : industryDataList) {
-                            //检测次数
-                            TextView detectCount = new TextView(ScanResultActivity.this);
-                            detectCount.setText(String.valueOf(count--));
-                            detectCount.setTextSize(15);
-                            detect_count_ll.addView(detectCount);
-                            //检测时间
-                            TextView detectDate = new TextView(ScanResultActivity.this);
-                            detectDate.setText(sdf.format(industryData.getDatatime()));
-                            detectDate.setTextSize(15);
-                            detect_date_ll.addView(detectDate);
-                            //检测数值 平面度MAX
-                            TextView detectValue = new TextView(ScanResultActivity.this);
-                            detectValue.setText(String.valueOf(industryData.getMax()));
-                            detectValue.setTextSize(15);
-                            detect_value_ll.addView(detectValue);
+                        scanResultListAdapter.setDataSource(industryDataList);
+                        verticality_list.setAdapter(scanResultListAdapter);
+                        int count = verticality_list.getCount();
+                        for(int i=0;i<count;i++){
+                            verticality_list.expandGroup(i);
                         }
+                    }else{
+                        scanResultListAdapter.setDataSource(new ArrayList<>());
+                        verticality_list.setAdapter(scanResultListAdapter);
                     }
 
                     if(verticalityDataVo.getCollectStatus() == 1){
@@ -121,9 +114,7 @@ public class ScanResultActivity extends AppCompatActivity {
 
         @Override
         public void failure(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(ScanResultActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show());
             finish();
         }
     };
@@ -132,16 +123,12 @@ public class ScanResultActivity extends AppCompatActivity {
         @Override
         public void success(JsonResult result) {
             verticalityDataVo.setState(currentState);
-            Looper.prepare();
-            Toast.makeText(ScanResultActivity.this,"修改成功!",Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"修改成功!",Toast.LENGTH_SHORT).show());
         }
 
         @Override
         public void failure(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(ScanResultActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show());
         }
     };
 
@@ -153,23 +140,17 @@ public class ScanResultActivity extends AppCompatActivity {
             if(collectStatus == 1){
                 collectStatus = 2;
                 collect_img.setImageResource(R.drawable.ic_collect1);
-                Looper.prepare();
-                Toast.makeText(ScanResultActivity.this,"取消收藏!",Toast.LENGTH_SHORT).show();
-                Looper.loop();
+                ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"取消收藏!",Toast.LENGTH_SHORT).show());
             }else if(collectStatus == 2){
                 collectStatus = 1;
                 collect_img.setImageResource(R.drawable.ic_collect_pressed1);
-                Looper.prepare();
-                Toast.makeText(ScanResultActivity.this,"收藏成功!",Toast.LENGTH_SHORT).show();
-                Looper.loop();
+                ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"收藏成功!",Toast.LENGTH_SHORT).show());
             }
         }
 
         @Override
         public void failure(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(ScanResultActivity.this,"收藏失败!",Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"收藏失败!",Toast.LENGTH_SHORT).show());
         }
     };
 
@@ -204,9 +185,8 @@ public class ScanResultActivity extends AppCompatActivity {
 
         scan_code_text = findViewById(R.id.scan_code_text);
         statusSelector = findViewById(R.id.status_selector);
-        detect_count_ll = findViewById(R.id.detect_count_ll);
-        detect_date_ll = findViewById(R.id.detect_date_ll);
-        detect_value_ll = findViewById(R.id.detect_value_ll);
+
+        verticality_list = findViewById(R.id.verticality_list);
 
         collect_img = findViewById(R.id.collect_img);
         browse_img = findViewById(R.id.browse_img);

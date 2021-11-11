@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,9 +108,7 @@ public class DataFragment extends Fragment implements DatePickerDialog.OnDateSet
         @Override
         public void failure(JsonResult result) {
             Log.d(TAG, "failure: " + gson.toJson(result));
-            Looper.prepare();
-            Toast.makeText(context,result.getMsg(),Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            getActivity().runOnUiThread(()->Toast.makeText(context,result.getMsg(),Toast.LENGTH_SHORT).show());
         }
     };
 

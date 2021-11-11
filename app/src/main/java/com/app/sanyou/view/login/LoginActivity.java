@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -60,19 +59,16 @@ public class LoginActivity extends AppCompatActivity {
             edit.putString("username",user.getUsername());
             edit.commit();
 
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),"登录成功!",Toast.LENGTH_SHORT).show();
+            LoginActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"登录成功!",Toast.LENGTH_SHORT).show());
             Intent intent = new Intent(LoginActivity.this, TabViewPagerActivity.class);
             startActivity(intent);
-            Looper.loop();
+
         }
 
         @Override
         public void failure(JsonResult result) {
             Log.d(TAG, "onClick: " + gson.toJson(result));
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            LoginActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show());
         }
     };
 

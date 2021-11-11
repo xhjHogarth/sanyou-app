@@ -2,7 +2,6 @@ package com.app.sanyou.view.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,18 +39,14 @@ public class ModifyPasswordActivity extends AppCompatActivity {
     private CallListener listener = new CallListener() {
         @Override
         public void success(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),"密码修改成功!",Toast.LENGTH_SHORT).show();
+            ModifyPasswordActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"密码修改成功!",Toast.LENGTH_SHORT).show());
             Intent intent = new Intent(ModifyPasswordActivity.this, LoginActivity.class);
             startActivity(intent);
-            Looper.loop();
         }
 
         @Override
         public void failure(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),"密码修改失败,请联系管理员!",Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            ModifyPasswordActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"密码修改失败,请联系管理员!",Toast.LENGTH_SHORT).show());
         }
     };
 

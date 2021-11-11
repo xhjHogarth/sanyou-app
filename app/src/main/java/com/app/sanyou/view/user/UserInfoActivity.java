@@ -3,7 +3,6 @@ package com.app.sanyou.view.user;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,9 +98,7 @@ public class UserInfoActivity extends AppCompatActivity {
         @Override
         public void failure(JsonResult result) {
             Log.d(TAG, "onLoad: " + gson.toJson(result));
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            UserInfoActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show());
         }
     };
 
@@ -110,19 +107,15 @@ public class UserInfoActivity extends AppCompatActivity {
 
         @Override
         public void success(JsonResult result) {
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),"保存成功!",Toast.LENGTH_SHORT).show();
+            UserInfoActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"保存成功!",Toast.LENGTH_SHORT).show());
             Intent intent = new Intent(UserInfoActivity.this, TabViewPagerActivity.class);
             startActivity(intent);
-            Looper.loop();
         }
 
         @Override
         public void failure(JsonResult result) {
             Log.d(TAG, "onClick: " + gson.toJson(result));
-            Looper.prepare();
-            Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            UserInfoActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),result.getMsg(),Toast.LENGTH_SHORT).show());
         }
     };
 

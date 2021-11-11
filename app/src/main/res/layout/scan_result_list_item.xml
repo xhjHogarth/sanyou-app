@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="32dp">
+
+    <ImageView
+        android:id="@+id/ivLeftItemLine"
+        android:layout_width="1.8dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="26dp"
+        android:background="@color/el_list_left_line_color"/>
+    <LinearLayout
+        android:id="@+id/llListHeader"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        android:background="@drawable/list_content_bg_close_demo">
+
+        <ImageView
+            android:id="@+id/ivItemIconImg"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3.5dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_data_record"/>
+        <TextView
+            android:id="@+id/tvItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="fill_vertical"
+            android:text="平面度MAX: 20"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+</LinearLayout>

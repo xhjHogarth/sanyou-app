@@ -45,10 +45,11 @@
 
         <ImageView
             android:id="@+id/user_info_setting"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_setting"/>
+            android:src="@drawable/ic_setting"
+            android:foreground="?android:attr/selectableItemBackground"/>
 
     </LinearLayout>
 
@@ -57,92 +58,129 @@
         android:layout_below="@+id/my_info_ll"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <ImageView
             android:src="@drawable/ic_mine_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"/>
         <TextView
             android:layout_weight="1.0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="我的收藏"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"/>
 
         <ImageView
-            android:layout_gravity="right"
+            android:layout_gravity="right|center_vertical"
             android:src="@drawable/ic_right_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="10dp" />
 
     </LinearLayout>
     <LinearLayout
         android:id="@+id/history_ll"
         android:layout_below="@+id/collect_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:foreground="?android:attr/selectableItemBackground">
 
         <ImageView
             android:src="@drawable/ic_mine_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"/>
 
         <TextView
             android:layout_weight="1.0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="历史记录"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"/>
 
         <ImageView
-            android:layout_gravity="right"
+            android:layout_gravity="right|center_vertical"
             android:src="@drawable/ic_right_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
     <LinearLayout
         android:id="@+id/help_ll"
         android:layout_below="@+id/history_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:foreground="?android:attr/selectableItemBackground">
 
         <ImageView
             android:src="@drawable/ic_mine_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"/>
 
         <TextView
             android:layout_weight="1.0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="问题反馈"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"/>
 
         <ImageView
-            android:layout_gravity="right"
+            android:layout_gravity="right|center_vertical"
             android:src="@drawable/ic_right_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/message_ll"
+        android:layout_below="@+id/help_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:src="@drawable/ic_mine_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="消息中心"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"/>
+
+        <ImageView
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/sign_out_btn"

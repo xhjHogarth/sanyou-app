@@ -5,48 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/title_bar"
-        layout="@layout/titlebar" />
+<!--    <include-->
+<!--        android:id="@+id/title_bar"-->
+<!--        layout="@layout/titlebar" />-->
 
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/tv_scanResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"/>
+    <LinearLayout
+        android:id="@+id/llSearch"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/login_btn"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/query_text"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_toLeftOf="@+id/search_btn"
-        android:layout_below="@+id/title_bar"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <Button
-        android:id="@+id/search_btn"
-        android:text="查找"
-        android:textColor="@color/white"
-        android:background="@drawable/button_shape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/btn_scan"
-        android:layout_below="@+id/title_bar"/>
+            <EditText
+                android:id="@+id/query_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:hint="请输入搜索内容"
+                android:maxLength="10"
+                android:paddingLeft="15dp"
+                android:textSize="12sp"
+                android:background="@drawable/searchbox_bj"/>
 
-    <Button
-        android:id="@+id/btn_scan"
-        android:text="扫一扫"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/button_shape"
-        android:layout_below="@+id/title_bar"/>
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_delete_query"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+
+<!--    <TextView-->
+<!--        android:visibility="gone"-->
+<!--        android:id="@+id/tv_scanResult"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="TextView"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/query_text"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_toLeftOf="@+id/search_btn"-->
+<!--        android:layout_below="@+id/title_bar"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/search_btn"-->
+<!--        android:text="查找"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="@drawable/button_shape"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        android:layout_toLeftOf="@+id/btn_scan"-->
+<!--        android:layout_below="@+id/title_bar"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_scan"-->
+<!--        android:text="扫一扫"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:background="@drawable/button_shape"-->
+<!--        android:layout_below="@+id/title_bar"/>-->
 
 
 

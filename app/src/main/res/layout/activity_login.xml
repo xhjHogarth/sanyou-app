@@ -1,49 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.login.LoginActivity">
+    tools:context=".view.login.LoginActivity"
+    android:background="@color/gray"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/title_bar"
         layout="@layout/titlebar"/>
 
 
-    <EditText
-        android:id="@+id/username_text"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/title_bar"
-        android:hint="请输入用户名"
-        android:inputType="textPersonName"
-        android:background="@drawable/edit_text" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_user_login2"/>
 
-    <EditText
-        android:id="@+id/password_text"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/username_text"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
-        android:background="@drawable/edit_text" />
+
+    <RelativeLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <EditText
+            android:id="@+id/username_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchbox_bj"
+            android:hint="请输入用户名"
+            android:inputType="textPersonName"
+            android:maxLength="10"
+            android:paddingLeft="15dp"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivDeleteName"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_delete_login"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <EditText
+            android:id="@+id/password_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchbox_bj"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            android:paddingLeft="15dp"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivDeletePwd"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_delete_login"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/username_text"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:layout_marginRight="50dp"-->
+<!--        android:background="@drawable/searchbox_bj"-->
+<!--        android:hint="请输入用户名"-->
+<!--        android:maxLength="10"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        android:textSize="18sp" />-->
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/username_text"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@+id/title_bar"-->
+<!--        android:hint="请输入用户名"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:background="@drawable/edit_text" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/password_text"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@+id/username_text"-->
+<!--        android:hint="请输入密码"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:background="@drawable/edit_text" />-->
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginLeft="85dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/password_text"
         android:background="@drawable/button_shape"
         android:text="登录"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:gravity="center"
@@ -70,4 +157,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>
