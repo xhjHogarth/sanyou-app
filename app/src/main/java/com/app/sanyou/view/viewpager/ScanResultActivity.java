@@ -262,6 +262,11 @@ public class ScanResultActivity extends AppCompatActivity {
                                 .setPositiveButton("确定", (dialog14, which) -> {
                                     currentState = position;
 
+                                    if(verticalityData.getMaintainType() == null){
+                                        verticalityData.setMaintainType(1);
+                                    }
+                                    verticalityData.setUserid(userId);
+
                                     Gson gson = new Gson();
                                     String json = gson.toJson(verticalityData);
                                     HttpUtil.post(Request.URL + "/app/verticality/updateState", json, selectorChangeListener);
@@ -283,6 +288,7 @@ public class ScanResultActivity extends AppCompatActivity {
                                         VerticalityDataVo verticalityData = new VerticalityDataVo();
                                         verticalityData.setVerticalityId(scanCode);
                                         verticalityData.setState(position);
+                                        verticalityData.setUserid(userId);
 
                                         Gson gson = new Gson();
                                         String json = gson.toJson(verticalityData);

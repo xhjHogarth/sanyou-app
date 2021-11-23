@@ -1,67 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.login.RegisterActivity">
+    android:orientation="vertical"
+    tools:context=".view.login.RegisterActivity"
+    android:background="@color/gray">
 
     <include
         android:id="@+id/title_bar"
         layout="@layout/titlebar"/>
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_user_login2"/>
 
-    <EditText
-        android:id="@+id/username_text"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/title_bar"
-        android:hint="请输入用户名"
-        android:inputType="textPersonName"
-        android:background="@drawable/edit_text" />
+    <RelativeLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
 
-    <EditText
-        android:id="@+id/password_text"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/username_text"
-        android:hint="请输入登录密码"
-        android:inputType="textPassword"
-        android:background="@drawable/edit_text" />
+        <EditText
+            android:id="@+id/username_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchbox_bj"
+            android:hint="请输入用户名"
+            android:inputType="textPersonName"
+            android:maxLength="10"
+            android:paddingLeft="15dp"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/confirm_password_text"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/password_text"
-        android:hint="请再次确认输入密码"
-        android:inputType="textPassword"
-        android:background="@drawable/edit_text" />
+        <ImageView
+            android:id="@+id/ivDeleteName"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_delete_login"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <EditText
+            android:id="@+id/password_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchbox_bj"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            android:paddingLeft="15dp"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivDeletePwd"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_delete_login"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <EditText
+            android:id="@+id/confirm_password_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchbox_bj"
+            android:hint="请再次确认输入密码"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            android:paddingLeft="15dp"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivDeleteConfirmPwd"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_delete_login"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/username_text"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@+id/title_bar"-->
+<!--        android:hint="请输入用户名"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:background="@drawable/edit_text" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/password_text"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@+id/username_text"-->
+<!--        android:hint="请输入登录密码"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:background="@drawable/edit_text" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/confirm_password_text"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@+id/password_text"-->
+<!--        android:hint="请再次确认输入密码"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:background="@drawable/edit_text" />-->
 
     <Button
         android:id="@+id/register_btn"
-        android:layout_width="134dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="85dp"
+        android:layout_marginRight="85dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/confirm_password_text"
         android:text="注册"
         android:textColor="@color/white"
-        android:background="@color/login_btn" />
+        android:textSize="20sp"
+        android:background="@drawable/button_shape" />
 
     <TextView
         android:id="@+id/back_login_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/register_btn"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
         android:text="已有账户，立即登录" />
-</RelativeLayout>
+</LinearLayout>

@@ -2,7 +2,10 @@ package com.app.sanyou.view.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
     private String username;
     private String password;
     private String confirmPassword;
+
+    private ImageView ivDeleteName;
+    private ImageView ivDeletePwd;
+    private ImageView ivDeleteConfirmPwd;
 
     private CallListener listener = new CallListener() {
         @Override
@@ -75,6 +82,10 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPasswordText = findViewById(R.id.confirm_password_text);
         registerBtn = findViewById(R.id.register_btn);
         backLoginView = findViewById(R.id.back_login_view);
+
+        ivDeleteName = findViewById(R.id.ivDeleteName);
+        ivDeletePwd = findViewById(R.id.ivDeletePwd);
+        ivDeleteConfirmPwd = findViewById(R.id.ivDeleteConfirmPwd);
     }
 
     private void initClickListener(){
@@ -85,6 +96,83 @@ public class RegisterActivity extends AppCompatActivity {
         back_text.setOnClickListener(v->{
             finish();
         });
+
+        usernameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == 0)
+                    ivDeleteName.setVisibility(View.GONE);
+                else
+                    ivDeleteName.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        ivDeleteName.setOnClickListener(v->{
+            usernameText.setText("");
+            ivDeleteName.setVisibility(View.GONE);
+        });
+
+        passwordText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == 0)
+                    ivDeletePwd.setVisibility(View.GONE);
+                else
+                    ivDeletePwd.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        ivDeletePwd.setOnClickListener(v->{
+            passwordText.setText("");
+            ivDeletePwd.setVisibility(View.GONE);
+        });
+
+
+        confirmPasswordText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == 0)
+                    ivDeleteConfirmPwd.setVisibility(View.GONE);
+                else
+                    ivDeleteConfirmPwd.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        ivDeleteConfirmPwd.setOnClickListener(v->{
+            confirmPasswordText.setText("");
+            ivDeleteConfirmPwd.setVisibility(View.GONE);
+        });
+
 
         registerBtn.setOnClickListener(view -> {
             username = usernameText.getText().toString();

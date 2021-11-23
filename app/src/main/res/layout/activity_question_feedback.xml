@@ -75,7 +75,7 @@
             android:id="@+id/tvNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0/2"
+            android:text="0/1"
             android:textColor="#666666"
             android:layout_gravity="right|bottom"
             android:paddingRight="10dp"/>

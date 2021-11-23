@@ -1,12 +1,15 @@
 package com.app.sanyou.view.user;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +34,9 @@ import com.app.sanyou.entity.LoadFileVo;
 import com.app.sanyou.entity.Question;
 import com.app.sanyou.utils.HttpUtil;
 import com.app.sanyou.utils.StringUtil;
+import com.app.sanyou.utils.UserUtil;
 import com.app.sanyou.view.adapter.LoadPictureAdapter;
+import com.app.sanyou.view.login.LoginActivity;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -53,23 +59,26 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
     private LoadPictureAdapter loadPictureAdapter;
     private List<LoadFileVo> fileList = new ArrayList<>();
 
+    private String userId;
+
     private String mPhotoPath;
     private Uri uriImage;
     private File mPhotoFile;
 
-    private CallListener feedbakListener = new CallListener() {
+    private CallListener feedbackListener = new CallListener() {
 
         Gson gson = new Gson();
 
         @Override
         public void success(JsonResult result) {
             Object obj = result.getData();
+            QuestionFeedbackActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"反馈成功!",Toast.LENGTH_SHORT).show());
             finish();
         }
 
         @Override
         public void failure(JsonResult result) {
-
+            QuestionFeedbackActivity.this.runOnUiThread(()->Toast.makeText(getApplicationContext(),"反馈失败!",Toast.LENGTH_SHORT).show());
         }
     };
 
@@ -80,6 +89,13 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         setContentView(R.layout.activity_question_feedback);
+
+        userId = UserUtil.getUserId(this);
+        if(StringUtil.isNull(userId)){
+            UserUtil.loginOut(this);
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         //初始化View
         initView();
@@ -120,16 +136,24 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
             String questionDesc = question_desc_text.getText().toString();
 
             if(StringUtil.isNull(questionTitle) || StringUtil.isNull(questionDesc))
-                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"标题/内容为空!",Toast.LENGTH_SHORT).show();
 
 
             Question question = new Question();
             question.setTitle(questionTitle);
             question.setDescription(questionDesc);
+            question.setUserid(userId);
 
-            String json = new Gson().toJson(question);
+            //String json = new Gson().toJson(question);
 
-            HttpUtil.post(Request.URL + "/app/question/addQuestion",json,feedbakListener);
+            //HttpUtil.post(Request.URL + "/app/question/addQuestion",json,feedbackListener);
+            List<File> list = new ArrayList<>();
+            if(fileList.size() > 1){
+                for(int i=1;i<fileList.size();i++){
+                    list.add(fileList.get(i).getFile());
+                }
+            }
+            HttpUtil.postMulti(Request.URL + "/app/question/addQuestion",question,list,feedbackListener);
         });
     }
 
@@ -142,8 +166,8 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
         loadPictureAdapter.setListener(new LoadPictureAdapter.OnItemClickListener() {
             @Override
             public void click(View view, int position) {
-                if(fileList.size() > 2){
-                    showToast("一次最多上传2张图片!");
+                if(fileList.size() > 1){
+                    showToast("最多上传1张图片!");
                 }else{
                     selectPic();  //选择添加图片方法
                 }
@@ -151,7 +175,7 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
 
             @Override
             public void delete(View view) {
-                tvNum.setText((fileList.size()-1) + "/2");
+                tvNum.setText((fileList.size()-1) + "/1");
             }
         });
     }
@@ -181,12 +205,13 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
         if(requestCode == 0){
             if(data != null){
                 Uri uri = data.getData();
-                saveUritoFile(uri,0);
+                saveUriToFile(uri,0);
             }
         }
     }
 
-    private void saveUritoFile(Uri uriImage,int type){
+    @SuppressLint("Range")
+    private void saveUriToFile(Uri uriImage, int type){
         Bitmap photoBmp = null;
         if(uriImage != null){
             try {
@@ -195,10 +220,21 @@ public class QuestionFeedbackActivity extends AppCompatActivity {
                 photoBmp = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uriImage),null,options);
                 File file = new File("");
                 if(type == 0){
-
+                    if("content".equalsIgnoreCase(uriImage.getScheme())){
+                        String filePath=null;
+                        String[] projection = {MediaStore.Images.Media.DATA};
+                        CursorLoader cursorLoader = new CursorLoader(this,uriImage,projection,null,null,null);
+                        Cursor cursor = cursorLoader.loadInBackground();
+                        if(cursor!=null) {
+                            cursor.moveToFirst();
+                            filePath = cursor.getString(cursor.getColumnIndex(projection[0]));
+                            cursor.close();
+                            file = new File(filePath);
+                        }
+                    }
                 }
                 fileList.add(new LoadFileVo(file,false,photoBmp));
-                tvNum.setText((fileList.size()-1) + "/2");
+                tvNum.setText((fileList.size()-1) + "/1");
 
             }catch (Exception e){
 

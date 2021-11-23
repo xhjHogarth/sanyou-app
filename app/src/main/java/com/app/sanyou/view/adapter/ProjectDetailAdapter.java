@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,9 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ContractData contractData = dataSource.get(position);
 
+        if(position%2==1){
+            holder.llItem.setBackgroundColor(context.getResources().getColor(R.color.gray));
+        }
         holder.contractIdText.setText(contractData.getContractId());
         holder.contractNameText.setText(contractData.getContractName());
     }
@@ -52,12 +56,14 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
+        private LinearLayout llItem;
         private TextView contractIdText;
         private TextView contractNameText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            llItem = itemView.findViewById(R.id.llItem);
             contractIdText = itemView.findViewById(R.id.contractId);
             contractNameText = itemView.findViewById(R.id.contractName);
         }

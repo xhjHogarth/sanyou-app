@@ -38,4 +38,10 @@ public class UserUtil {
         String userId = sharedPreferences.getString("userId",null);
         return StringUtil.isNull(userId) ? "" : userId;
     }
+
+    public static String getUserName(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username",null);
+        return StringUtil.isNull(username) ? "" : username;
+    }
 }

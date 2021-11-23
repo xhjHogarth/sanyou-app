@@ -11,6 +11,17 @@ public class Question {
 
     private Date createtime;
 
+    private String userid;
+
+    private Integer isHandled;
+
+    private String handleUserId;
+    private String handleUserName;
+
+    private Date handleTime;
+
+    private String url;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +52,53 @@ public class Question {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public Integer getIsHandled() {
+        return isHandled;
+    }
+
+    public void setIsHandled(Integer isHandled) {
+        this.isHandled = isHandled;
+    }
+
+    public String getHandleUserId() {
+        return handleUserId;
+    }
+
+    public void setHandleUserId(String handleUserId) {
+        this.handleUserId = handleUserId;
+    }
+
+    public Date getHandleTime() {
+        return handleTime;
+    }
+
+    public void setHandleTime(Date handleTime) {
+        this.handleTime = handleTime;
+    }
+
+    public String getHandleUserName() {
+        return handleUserName;
+    }
+
+    public void setHandleUserName(String handleUserName) {
+        this.handleUserName = handleUserName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

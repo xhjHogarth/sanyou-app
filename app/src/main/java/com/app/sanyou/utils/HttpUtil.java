@@ -1,22 +1,22 @@
 package com.app.sanyou.utils;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.app.sanyou.common.CallListener;
 import com.app.sanyou.common.JsonResult;
 import com.app.sanyou.constants.ReqMediaType;
 import com.app.sanyou.constants.ResponseStatus;
+import com.app.sanyou.entity.Question;
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
+import java.io.File;
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -120,4 +120,90 @@ public class HttpUtil {
             }
         });
     }
+
+    public static void postMulti(String url, Question question, List<File> fileList, CallListener listener){
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.addFormDataPart("title", question.getTitle());
+        builder.addFormDataPart("description", question.getDescription());
+        builder.addFormDataPart("userId", question.getUserid());
+        for (File file : fileList) {
+            builder.addFormDataPart("images",
+                    file.getName(),
+                    RequestBody.create(MediaType.parse(MediaTypeUtil.getMimeType(file.getName())),file));
+        }
+        MultipartBody build = builder.setType(MultipartBody.FORM).build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(build).build();
+
+        if(client == null)  client = getClient();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                JsonResult jsonResult = new JsonResult();
+                jsonResult.setStatus(ResponseStatus.ERROR);
+                jsonResult.setMsg(e.getMessage());
+                if(listener != null){
+                    listener.failure(jsonResult);
+                }
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String json = response.body().string();
+                Gson gson = new Gson();
+                JsonResult jsonResult = gson.fromJson(json,JsonResult.class);
+                if(listener != null){
+                    if(jsonResult.getStatus() == ResponseStatus.SUCCESS){
+                        listener.success(jsonResult);
+                    }else{
+                        listener.failure(jsonResult);
+                    }
+                }
+            }
+        });
+    }
+
+    public static void postMulti(String url, String userId, File file, CallListener listener){
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.addFormDataPart("userId", userId);
+        builder.addFormDataPart("image",
+                file.getName(),
+                RequestBody.create(MediaType.parse(MediaTypeUtil.getMimeType(file.getName())),file));
+
+        MultipartBody build = builder.setType(MultipartBody.FORM).build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(build).build();
+
+        if(client == null)  client = getClient();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                JsonResult jsonResult = new JsonResult();
+                jsonResult.setStatus(ResponseStatus.ERROR);
+                jsonResult.setMsg(e.getMessage());
+                if(listener != null){
+                    listener.failure(jsonResult);
+                }
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String json = response.body().string();
+                Gson gson = new Gson();
+                JsonResult jsonResult = gson.fromJson(json,JsonResult.class);
+                if(listener != null){
+                    if(jsonResult.getStatus() == ResponseStatus.SUCCESS){
+                        listener.success(jsonResult);
+                    }else{
+                        listener.failure(jsonResult);
+                    }
+                }
+            }
+        });
+    }
+
 }

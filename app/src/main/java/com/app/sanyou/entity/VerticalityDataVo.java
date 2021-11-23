@@ -24,7 +24,7 @@ public class VerticalityDataVo {
     /**
      * 垂直度
      */
-    private Integer verticality;
+    private Float verticality;
     /**
      * 阴极板状态
      */
@@ -36,6 +36,25 @@ public class VerticalityDataVo {
     private Integer maintainType;
 
     /**
+     * 修改阴极板状态的时间
+     */
+    private Date updateStateDate;
+
+    /**
+     * 报修时间
+     */
+    private Date updateMaintainDate;
+
+    /**
+     * 报修人
+     */
+    private String userid;
+
+    private String username;
+
+    private String query;
+
+    /**
      * 阴极板是否收藏(1-收藏,2-未收藏)
      */
     private int collectStatus;
@@ -43,6 +62,14 @@ public class VerticalityDataVo {
      * 阴极板动态检测数据
      */
     private List<IndustryData> industryDataList;
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
 
     public String getVerticalityId() {
         return verticalityId;
@@ -76,11 +103,11 @@ public class VerticalityDataVo {
         this.createtime = createtime;
     }
 
-    public Integer getVerticality() {
+    public Float getVerticality() {
         return verticality;
     }
 
-    public void setVerticality(Integer verticality) {
+    public void setVerticality(Float verticality) {
         this.verticality = verticality;
     }
 
@@ -115,5 +142,37 @@ public class VerticalityDataVo {
 
     public void setMaintainType(Integer maintainType) {
         this.maintainType = maintainType;
+    }
+
+    public Date getUpdateStateDate() {
+        return updateStateDate;
+    }
+
+    public void setUpdateStateDate(Date updateStateDate) {
+        this.updateStateDate = updateStateDate;
+    }
+
+    public Date getUpdateMaintainDate() {
+        return updateMaintainDate;
+    }
+
+    public void setUpdateMaintainDate(Date updateMaintainDate) {
+        this.updateMaintainDate = updateMaintainDate;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
