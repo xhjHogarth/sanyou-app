@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".view.viewpager.ProjectDetailActivity">
 
     <include
@@ -12,154 +13,186 @@
         layout="@layout/titlebar" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="项目名称:"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/projectNameText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_marginLeft="10dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_project_img4"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/projectNameText"
+                android:textSize="22sp"
+                android:text="项目1"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="阴极板总数:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
 
-        <TextView
-            android:id="@+id/totalNumText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:text="阴极板总数:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="使用中的阴极板数:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/totalNumText"
+                android:textSize="18sp"
+                android:text="10"
+                android:layout_width="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/usingNumText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:text="使用中的阴极板数:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="维修中的阴极板数:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/usingNumText"
+                android:textSize="18sp"
+                android:text="5"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/maintainNumText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:text="维修中的阴极板数:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="备用的阴极板数:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/maintainNumText"
+                android:textSize="18sp"
+                android:text="2"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/reserveNumText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:text="备用的阴极板数:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:text="报废的阴极板数:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/reserveNumText"
+                android:textSize="18sp"
+                android:text="1"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/deprecatedNumText"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:text="报废的阴极板数:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/deprecatedNumText"
+                android:textSize="18sp"
+                android:text="2"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <TextView
             android:textSize="20sp"
             android:text="合同编号"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_gravity="center_vertical"/>
         <TextView
             android:textSize="20sp"
             android:text="合同名称"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

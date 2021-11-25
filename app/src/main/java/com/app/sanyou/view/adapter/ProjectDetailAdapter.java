@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,11 +42,13 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ContractData contractData = dataSource.get(position);
 
-        if(position%2==1){
-            holder.llItem.setBackgroundColor(context.getResources().getColor(R.color.gray));
-        }
+//        if(position%2==1){
+//            holder.llItem.setBackgroundColor(context.getResources().getColor(R.color.gray));
+//        }
         holder.contractIdText.setText(contractData.getContractId());
         holder.contractNameText.setText(contractData.getContractName());
+        if(position == dataSource.size()-1)
+            holder.ivSpilt.setVisibility(View.GONE);
     }
 
     @Override
@@ -59,6 +62,7 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
         private LinearLayout llItem;
         private TextView contractIdText;
         private TextView contractNameText;
+        private ImageView ivSpilt;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +70,7 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
             llItem = itemView.findViewById(R.id.llItem);
             contractIdText = itemView.findViewById(R.id.contractId);
             contractNameText = itemView.findViewById(R.id.contractName);
+            ivSpilt = itemView.findViewById(R.id.ivSpilt);
         }
     }
 }

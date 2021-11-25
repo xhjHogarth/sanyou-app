@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -106,7 +107,7 @@ public class MineFragment extends Fragment {
 
         @Override
         public void failure(JsonResult result) {
-
+            getActivity().runOnUiThread(()-> Toast.makeText(context,"头像加载失败!", Toast.LENGTH_SHORT).show());
         }
     };
 
@@ -119,12 +120,13 @@ public class MineFragment extends Fragment {
             if(userImage!=null && StringUtil.isNotNull(userImage.getFilename())){
                 imageName = userImage.getFilename();
                 updateImage();
+                getActivity().runOnUiThread(()-> Toast.makeText(context,"设置成功!", Toast.LENGTH_SHORT).show());
             }
         }
 
         @Override
         public void failure(JsonResult result) {
-
+            getActivity().runOnUiThread(()-> Toast.makeText(context,"设置失败!", Toast.LENGTH_SHORT).show());
         }
     };
 

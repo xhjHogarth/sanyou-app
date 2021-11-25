@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,8 +49,21 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
             Intent intent = new Intent(context, ProjectDetailActivity.class);
             intent.putExtra("projectId",projectVo.getProjectId());
             intent.putExtra("projectName",projectVo.getProjectName());
+            intent.putExtra("position",position);
             context.startActivity(intent);
         });
+
+        if(position == dataSource.size()-1){
+            holder.ivSpilt.setVisibility(View.GONE);
+        }
+        if(position%4==0){
+            holder.ivIcon.setImageResource(R.drawable.ic_project_img1);
+        }else if(position%4==1){
+            holder.ivIcon.setImageResource(R.drawable.ic_project_img2);
+        }else if(position%4==2){
+            holder.ivIcon.setImageResource(R.drawable.ic_project_img3);
+        }else
+            holder.ivIcon.setImageResource(R.drawable.ic_project_img4);
     }
 
     @Override
@@ -61,11 +75,15 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView projectNameText;
+        private ImageView ivIcon;
+        private ImageView ivSpilt;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             projectNameText = itemView.findViewById(R.id.projectName);
+            ivIcon = itemView.findViewById(R.id.ivIcon);
+            ivSpilt = itemView.findViewById(R.id.ivSpilt);
         }
     }
 }

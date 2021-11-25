@@ -32,6 +32,11 @@ public class ProjectDetailActivity extends AppCompatActivity {
     private TextView reserveNumText;
     private TextView deprecatedNumText;
 
+    private ImageView ivIcon;
+    private String projectId;
+    private String projectName;
+    private int position;
+
     private RecyclerView rv;
 
     private ProjectDetailAdapter projectDetailAdapter;
@@ -69,8 +74,9 @@ public class ProjectDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project_detail);
 
         Intent intent = getIntent();
-        String projectId = intent.getStringExtra("projectId");
-        String projectName = intent.getStringExtra("projectName");
+        projectId = intent.getStringExtra("projectId");
+        projectName = intent.getStringExtra("projectName");
+        position = intent.getIntExtra("position",0);
 
         initView();
         initClickListener();
@@ -85,6 +91,16 @@ public class ProjectDetailActivity extends AppCompatActivity {
         back_text = findViewById(R.id.back_text);
         title_text = findViewById(R.id.title_text);
         title_text.setText("");
+
+        ivIcon = findViewById(R.id.ivIcon);
+        if(position%4==0){
+            ivIcon.setImageResource(R.drawable.ic_project_img1);
+        }else if(position%4==1){
+            ivIcon.setImageResource(R.drawable.ic_project_img2);
+        }else if(position%4==2){
+            ivIcon.setImageResource(R.drawable.ic_project_img3);
+        }else
+            ivIcon.setImageResource(R.drawable.ic_project_img4);
 
         projectNameText = findViewById(R.id.projectNameText);
         totalNumText = findViewById(R.id.totalNumText);
