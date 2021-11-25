@@ -11,7 +11,7 @@ public class SearchHistory {
 
     private String userId;
 
-    private Integer verticality;
+    private Float verticality;
 
     /**
      * @return id
@@ -70,11 +70,11 @@ public class SearchHistory {
     }
 
 
-    public Integer getVerticality() {
+    public Float getVerticality() {
         return verticality;
     }
 
-    public void setVerticality(Integer verticality) {
+    public void setVerticality(Float verticality) {
         this.verticality = verticality;
     }
 }

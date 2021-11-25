@@ -11,7 +11,7 @@ public class CollectHistory {
 
     private String userId;
 
-    private Integer verticality;
+    private Float verticality;
 
     /**
      * @return id
@@ -72,14 +72,14 @@ public class CollectHistory {
     /**
      * @return verticality
      */
-    public Integer getVerticality() {
+    public Float getVerticality() {
         return verticality;
     }
 
     /**
      * @param verticality
      */
-    public void setVerticality(Integer verticality) {
+    public void setVerticality(Float verticality) {
         this.verticality = verticality;
     }
 }

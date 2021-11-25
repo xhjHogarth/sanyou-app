@@ -206,7 +206,7 @@ public class ScanResultActivity extends AppCompatActivity {
             CollectHistory collectHistory = new CollectHistory();
             collectHistory.setCollectCode(scanCode);
             collectHistory.setUserId(userId);
-            collectHistory.setVerticality(Integer.valueOf(verticality));
+            collectHistory.setVerticality(Float.valueOf(verticality));
             if(collectStatus == 1){
                 HttpUtil.post(Request.URL + "/app/collectHistory/unCollect",gson.toJson(collectHistory),collectListener);
             }else{
