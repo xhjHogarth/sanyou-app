@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.sanyou.R;
 import com.app.sanyou.entity.ProjectVo;
+import com.app.sanyou.utils.StringUtil;
 import com.app.sanyou.view.viewpager.ProjectDetailActivity;
 
 import java.util.List;
@@ -44,11 +45,19 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProjectVo projectVo = dataSource.get(position);
 
-        holder.projectNameText.setText(projectVo.getProjectName());
+        String projectName = "";
+        if(StringUtil.isNotNull(projectVo.getCustomProjectName()))
+            projectName = projectVo.getCustomProjectName();
+        else
+            projectName = projectVo.getProjectName();
+
+        holder.projectNameText.setText(projectName);
+
+        String finalProjectName = projectName;
         holder.itemView.setOnClickListener(v->{
             Intent intent = new Intent(context, ProjectDetailActivity.class);
             intent.putExtra("projectId",projectVo.getProjectId());
-            intent.putExtra("projectName",projectVo.getProjectName());
+            intent.putExtra("projectName", finalProjectName);
             intent.putExtra("position",position);
             context.startActivity(intent);
         });

@@ -225,9 +225,9 @@ public class ScanResultActivity extends AppCompatActivity {
                 msg += "出厂日期:   \n";
             }
             //导电棒尺寸
-            msg += "导电棒尺寸:  \n";
+            msg += "导电棒尺寸:  "+ verticalityDataVo.getDdbSize() +"\n";
             //阴极板尺寸
-            msg += "阴极板尺寸:  \n";
+            msg += "阴极板尺寸:  "+ verticalityDataVo.getYjbSize() +"\n";
             //出厂垂直度
             if(verticalityDataVo != null && verticalityDataVo.getVerticality() != null){
                 msg += "出厂垂直度:  "+ verticalityDataVo.getVerticality();

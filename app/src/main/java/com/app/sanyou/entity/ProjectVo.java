@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class ProjectVo {
 
+    private String customProjectName;
     private String projectId;
 
     private String factoryId;
@@ -20,11 +21,13 @@ public class ProjectVo {
 
     private String extension;
 
-    private Integer length;
+    private Integer ddbLength;
+    private Integer ddbWidth;
+    private Integer ddbHeight;
 
-    private Integer width;
-
-    private Integer height;
+    private Integer yjbLength;
+    private Integer yjbWidth;
+    private Integer yjbHeight;
 
     private String md5;
 
@@ -143,30 +146,6 @@ public class ProjectVo {
         this.extension = extension;
     }
 
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
     public String getMd5() {
         return md5;
     }
@@ -197,5 +176,61 @@ public class ProjectVo {
 
     public void setContractDataList(List<ContractData> contractDataList) {
         this.contractDataList = contractDataList;
+    }
+
+    public String getCustomProjectName() {
+        return customProjectName;
+    }
+
+    public void setCustomProjectName(String customProjectName) {
+        this.customProjectName = customProjectName;
+    }
+
+    public Integer getDdbLength() {
+        return ddbLength;
+    }
+
+    public void setDdbLength(Integer ddbLength) {
+        this.ddbLength = ddbLength;
+    }
+
+    public Integer getDdbWidth() {
+        return ddbWidth;
+    }
+
+    public void setDdbWidth(Integer ddbWidth) {
+        this.ddbWidth = ddbWidth;
+    }
+
+    public Integer getDdbHeight() {
+        return ddbHeight;
+    }
+
+    public void setDdbHeight(Integer ddbHeight) {
+        this.ddbHeight = ddbHeight;
+    }
+
+    public Integer getYjbLength() {
+        return yjbLength;
+    }
+
+    public void setYjbLength(Integer yjbLength) {
+        this.yjbLength = yjbLength;
+    }
+
+    public Integer getYjbWidth() {
+        return yjbWidth;
+    }
+
+    public void setYjbWidth(Integer yjbWidth) {
+        this.yjbWidth = yjbWidth;
+    }
+
+    public Integer getYjbHeight() {
+        return yjbHeight;
+    }
+
+    public void setYjbHeight(Integer yjbHeight) {
+        this.yjbHeight = yjbHeight;
     }
 }

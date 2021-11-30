@@ -181,7 +181,7 @@
         android:layout_marginRight="10dp">
         <TextView
             android:textSize="20sp"
-            android:text="合同编号"
+            android:text="订单编号"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"

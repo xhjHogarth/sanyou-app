@@ -8,9 +8,13 @@ package com.app.sanyou.entity;
  */
 public class ContractVo {
 
-    private String contractId;
+    private String customProjectName;
+
+    private String customContractName;
 
     private String projectId;
+
+    private String contractId;
 
     private String contractName;
 
@@ -42,6 +46,22 @@ public class ContractVo {
      * 报废的阴极板总数
      */
     private int deprecatedNum;
+
+    public String getCustomProjectName() {
+        return customProjectName;
+    }
+
+    public void setCustomProjectName(String customProjectName) {
+        this.customProjectName = customProjectName;
+    }
+
+    public String getCustomContractName() {
+        return customContractName;
+    }
+
+    public void setCustomContractName(String customContractName) {
+        this.customContractName = customContractName;
+    }
 
     public String getContractId() {
         return contractId;

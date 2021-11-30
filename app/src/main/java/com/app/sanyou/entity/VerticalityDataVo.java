@@ -63,6 +63,16 @@ public class VerticalityDataVo {
      */
     private List<IndustryData> industryDataList;
 
+    /**
+     * 导电棒尺寸
+     */
+    private String ddbSize;
+
+    /**
+     * 阴极板尺寸
+     */
+    private String yjbSize;
+
     public String getQuery() {
         return query;
     }
@@ -174,5 +184,21 @@ public class VerticalityDataVo {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getDdbSize() {
+        return ddbSize;
+    }
+
+    public void setDdbSize(String ddbSize) {
+        this.ddbSize = ddbSize;
+    }
+
+    public String getYjbSize() {
+        return yjbSize;
+    }
+
+    public void setYjbSize(String yjbSize) {
+        this.yjbSize = yjbSize;
     }
 }
