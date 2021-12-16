@@ -155,7 +155,7 @@ public class ScanFragment extends Fragment {
                 }
 
                 //判断阴极板是否存在
-                HttpUtil.get(Request.URL + "/app/verticality/checkExist?code=" + scanCode,checkExistListener);
+                HttpUtil.get(Request.URL + "/app/product/checkExist?code=" + scanCode,checkExistListener);
             }
         });
     }

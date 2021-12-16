@@ -22,7 +22,7 @@ import com.app.sanyou.common.JsonResult;
 import com.app.sanyou.constants.Request;
 import com.app.sanyou.entity.CollectHistory;
 import com.app.sanyou.entity.IndustryData;
-import com.app.sanyou.entity.VerticalityDataVo;
+import com.app.sanyou.entity.ProductVo;
 import com.app.sanyou.utils.HttpUtil;
 import com.app.sanyou.utils.StringUtil;
 import com.app.sanyou.utils.UserUtil;
@@ -54,7 +54,7 @@ public class ScanResultActivity extends AppCompatActivity {
     private String verticality;
     private int collectStatus=2;
     private List<IndustryData> industryDataList;
-    private VerticalityDataVo verticalityDataVo;
+    private ProductVo productVo;
     private int currentState=-1;
 
     private Handler handler = new Handler();
@@ -65,24 +65,24 @@ public class ScanResultActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void success(JsonResult result) {
-            verticalityDataVo = gson.fromJson(gson.toJson(result.getData()), VerticalityDataVo.class);
+            productVo = gson.fromJson(gson.toJson(result.getData()), ProductVo.class);
             handler.post(() -> {
-                if(verticalityDataVo == null || StringUtil.isNull(verticalityDataVo.getVerticalityId())){
+                if(productVo == null){
                     ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"阴极板不存在!",Toast.LENGTH_SHORT).show());
                     finish();
                 }else{
-                    scanCode = verticalityDataVo.getVerticalityId();
-                    verticality = String.valueOf(verticalityDataVo.getVerticality());
-                    industryDataList = verticalityDataVo.getIndustryDataList();
+                    scanCode = productVo.getProductCode();
+                    verticality = String.valueOf(productVo.getProductValue());
+                    industryDataList = productVo.getIndustryDataList();
 
                     scan_code_text.setText(scanCode);
-                    if(verticalityDataVo.getVerticality() == 0){
+                    if(productVo.getProductState() == 0){
                         statusSelector.setSelection(0);
-                    }else if(verticalityDataVo.getState() == 1){
+                    }else if(productVo.getProductState() == 1){
                         statusSelector.setSelection(1);
-                    }else if(verticalityDataVo.getState() == 2){
+                    }else if(productVo.getProductState() == 2){
                         statusSelector.setSelection(2);
-                    }else if(verticalityDataVo.getState() == 3){
+                    }else if(productVo.getProductState() == 3){
                         statusSelector.setSelection(3);
                     }else{
                         statusSelector.setSelection(0);
@@ -104,7 +104,7 @@ public class ScanResultActivity extends AppCompatActivity {
                         verticality_list.setAdapter(scanResultListAdapter);
                     }
 
-                    if(verticalityDataVo.getCollectStatus() == 1){
+                    if(productVo.getCollectStatus() == 1){
                         collectStatus = 1;
                         collect_img.setImageResource(R.drawable.ic_collect_pressed1);
                     }
@@ -122,7 +122,7 @@ public class ScanResultActivity extends AppCompatActivity {
     private CallListener selectorChangeListener = new CallListener() {
         @Override
         public void success(JsonResult result) {
-            verticalityDataVo.setState(currentState);
+            productVo.setProductState(currentState);
             ScanResultActivity.this.runOnUiThread(()->Toast.makeText(ScanResultActivity.this,"修改成功!",Toast.LENGTH_SHORT).show());
         }
 
@@ -219,18 +219,18 @@ public class ScanResultActivity extends AppCompatActivity {
             String msg = "";
             //出厂日期
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            if(verticalityDataVo != null && verticalityDataVo.getCreatetime()!=null){
-                msg += "出厂日期:   "+ sdf.format(verticalityDataVo.getCreatetime()) + "\n";
+            if(productVo != null && productVo.getCreatetime()!=null){
+                msg += "出厂日期:   "+ sdf.format(productVo.getCreatetime()) + "\n";
             }else{
                 msg += "出厂日期:   \n";
             }
             //导电棒尺寸
-            msg += "导电棒尺寸:  "+ verticalityDataVo.getDdbSize() +"\n";
+            msg += "导电棒尺寸:  "+ productVo.getDdbSize() +"\n";
             //阴极板尺寸
-            msg += "阴极板尺寸:  "+ verticalityDataVo.getYjbSize() +"\n";
+            msg += "阴极板尺寸:  "+ productVo.getYjbSize() +"\n";
             //出厂垂直度
-            if(verticalityDataVo != null && verticalityDataVo.getVerticality() != null){
-                msg += "出厂垂直度:  "+ verticalityDataVo.getVerticality();
+            if(productVo != null && productVo.getProductValue() != null){
+                msg += "出厂垂直度:  "+ productVo.getProductValue();
             }else{
                 msg += "出厂垂直度:  ";
             }
@@ -249,30 +249,30 @@ public class ScanResultActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 1){
-                    if(verticalityDataVo != null && verticalityDataVo.getState() != position){
-                        VerticalityDataVo verticalityData = new VerticalityDataVo();
-                        verticalityData.setVerticalityId(scanCode);
-                        verticalityData.setState(position);
+                    if(productVo != null && productVo.getProductState() != position){
+                        ProductVo productData = new ProductVo();
+                        productData.setProductCode(scanCode);
+                        productData.setProductState(position);
 
                         final CharSequence[] items = {"槽面换板","烧板","镀铜层脱落","弹性板"};
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ScanResultActivity.this);
                         dialog.setSingleChoiceItems(items, 0, (dialog13, which) -> {
-                            verticalityData.setMaintainType(which+1);
+                            productData.setMaintainType(which+1);
                         })
                                 .setPositiveButton("确定", (dialog14, which) -> {
                                     currentState = position;
 
-                                    if(verticalityData.getMaintainType() == null){
-                                        verticalityData.setMaintainType(1);
+                                    if(productData.getMaintainType() == null){
+                                        productData.setMaintainType(1);
                                     }
-                                    verticalityData.setUserid(userId);
+                                    productData.setUserid(userId);
 
                                     Gson gson = new Gson();
-                                    String json = gson.toJson(verticalityData);
-                                    HttpUtil.post(Request.URL + "/app/verticality/updateState", json, selectorChangeListener);
+                                    String json = gson.toJson(productData);
+                                    HttpUtil.post(Request.URL + "/app/product/updateState", json, selectorChangeListener);
                                 })
                                 .setNegativeButton("取消", (dialog15, which) -> {
-                                    statusSelector.setSelection(verticalityDataVo.getState());
+                                    statusSelector.setSelection(productVo.getProductState());
                                 })
                                 .create().show();
                     }
@@ -280,22 +280,22 @@ public class ScanResultActivity extends AppCompatActivity {
                     if(StringUtil.isNull(scanCode))
                         Toast.makeText(ScanResultActivity.this,"阴极板不存在!",Toast.LENGTH_SHORT).show();
                     else{
-                        if(verticalityDataVo != null && verticalityDataVo.getState() != position) {
+                        if(productVo != null && productVo.getProductState() != position) {
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ScanResultActivity.this);
                             dialog.setTitle("提示").setMessage("确认要修改阴极板状态吗?")
                                     .setPositiveButton("确定", (dialog1, which) -> {
                                         currentState = position;
-                                        VerticalityDataVo verticalityData = new VerticalityDataVo();
-                                        verticalityData.setVerticalityId(scanCode);
-                                        verticalityData.setState(position);
-                                        verticalityData.setUserid(userId);
+                                        ProductVo productData = new ProductVo();
+                                        productData.setProductCode(scanCode);
+                                        productData.setProductState(position);
+                                        productData.setUserid(userId);
 
                                         Gson gson = new Gson();
-                                        String json = gson.toJson(verticalityData);
-                                        HttpUtil.post(Request.URL + "/app/verticality/updateState", json, selectorChangeListener);
+                                        String json = gson.toJson(productData);
+                                        HttpUtil.post(Request.URL + "/app/product/updateState", json, selectorChangeListener);
                                     })
                                     .setNegativeButton("取消", (dialog12, which) -> {
-                                        statusSelector.setSelection(verticalityDataVo.getState());
+                                        statusSelector.setSelection(productVo.getProductState());
                                     }).create().show();
                         }
                     }

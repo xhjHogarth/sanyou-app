@@ -66,7 +66,7 @@
             <TextView
                 android:id="@+id/totalNumText"
                 android:textSize="18sp"
-                android:text="10"
+                android:text="0"
                 android:layout_width="match_parent"
                 android:layout_marginRight="15dp"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             <TextView
                 android:id="@+id/usingNumText"
                 android:textSize="18sp"
-                android:text="5"
+                android:text="0"
                 android:layout_marginRight="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             <TextView
                 android:id="@+id/maintainNumText"
                 android:textSize="18sp"
-                android:text="2"
+                android:text="0"
                 android:layout_marginRight="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             <TextView
                 android:id="@+id/reserveNumText"
                 android:textSize="18sp"
-                android:text="1"
+                android:text="0"
                 android:layout_marginRight="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
             <TextView
                 android:id="@+id/deprecatedNumText"
                 android:textSize="18sp"
-                android:text="2"
+                android:text="0"
                 android:layout_marginRight="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

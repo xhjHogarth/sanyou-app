@@ -11,31 +11,44 @@ import java.util.List;
  */
 public class ProjectVo {
 
-    private String customProjectName;
-    private String projectId;
+    private Integer id;
+
+    private String projectName;
+
+    private String projectCode;
+
+    private Double ddbLength;
+
+    private Double ddbWidth;
+
+    private Double ddbHeight;
+
+    private Double yjbLength;
+
+    private Double yjbWidth;
+
+    private Double yjbHeight;
 
     private String factoryId;
-    private String dirPath;
 
-    private String filename;
-
-    private String extension;
-
-    private Integer ddbLength;
-    private Integer ddbWidth;
-    private Integer ddbHeight;
-
-    private Integer yjbLength;
-    private Integer yjbWidth;
-    private Integer yjbHeight;
-
-    private String md5;
+    private String userId;
 
     private Date createtime;
 
-    private String factoryName;
-    private String projectName;
-    private List<ContractData> contractDataList;
+    private Date updatetime;
+
+    private Byte deleteMark;
+
+    private String username;
+
+    private  String factoryName;
+
+    private int hasFile;
+
+    private String filename;
+
+    private String ddbSize;
+    private String yjbSize;
 
     /**
      * 阴极板总数
@@ -57,6 +70,168 @@ public class ProjectVo {
      * 报废的阴极板总数
      */
     private int deprecatedNum;
+
+    private List<OrderVo> orderList;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getProjectCode() {
+        return projectCode;
+    }
+
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode;
+    }
+
+    public Double getDdbLength() {
+        return ddbLength;
+    }
+
+    public void setDdbLength(Double ddbLength) {
+        this.ddbLength = ddbLength;
+    }
+
+    public Double getDdbWidth() {
+        return ddbWidth;
+    }
+
+    public void setDdbWidth(Double ddbWidth) {
+        this.ddbWidth = ddbWidth;
+    }
+
+    public Double getDdbHeight() {
+        return ddbHeight;
+    }
+
+    public void setDdbHeight(Double ddbHeight) {
+        this.ddbHeight = ddbHeight;
+    }
+
+    public Double getYjbLength() {
+        return yjbLength;
+    }
+
+    public void setYjbLength(Double yjbLength) {
+        this.yjbLength = yjbLength;
+    }
+
+    public Double getYjbWidth() {
+        return yjbWidth;
+    }
+
+    public void setYjbWidth(Double yjbWidth) {
+        this.yjbWidth = yjbWidth;
+    }
+
+    public Double getYjbHeight() {
+        return yjbHeight;
+    }
+
+    public void setYjbHeight(Double yjbHeight) {
+        this.yjbHeight = yjbHeight;
+    }
+
+    public String getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(String factoryId) {
+        this.factoryId = factoryId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public Byte getDeleteMark() {
+        return deleteMark;
+    }
+
+    public void setDeleteMark(Byte deleteMark) {
+        this.deleteMark = deleteMark;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFactoryName() {
+        return factoryName;
+    }
+
+    public void setFactoryName(String factoryName) {
+        this.factoryName = factoryName;
+    }
+
+    public int getHasFile() {
+        return hasFile;
+    }
+
+    public void setHasFile(int hasFile) {
+        this.hasFile = hasFile;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getDdbSize() {
+        return ddbSize;
+    }
+
+    public void setDdbSize(String ddbSize) {
+        this.ddbSize = ddbSize;
+    }
+
+    public String getYjbSize() {
+        return yjbSize;
+    }
+
+    public void setYjbSize(String yjbSize) {
+        this.yjbSize = yjbSize;
+    }
 
     public int getTotalNum() {
         return totalNum;
@@ -98,139 +273,11 @@ public class ProjectVo {
         this.deprecatedNum = deprecatedNum;
     }
 
-    public String getFactoryName() {
-        return factoryName;
+    public List<OrderVo> getOrderList() {
+        return orderList;
     }
 
-    public void setFactoryName(String factoryName) {
-        this.factoryName = factoryName;
-    }
-
-    public String getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
-    }
-
-    public String getFactoryId() {
-        return factoryId;
-    }
-
-    public void setFactoryId(String factoryId) {
-        this.factoryId = factoryId;
-    }
-
-    public String getDirPath() {
-        return dirPath;
-    }
-
-    public void setDirPath(String dirPath) {
-        this.dirPath = dirPath;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
-    }
-
-    public String getMd5() {
-        return md5;
-    }
-
-    public void setMd5(String md5) {
-        this.md5 = md5;
-    }
-
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public List<ContractData> getContractDataList() {
-        return contractDataList;
-    }
-
-    public void setContractDataList(List<ContractData> contractDataList) {
-        this.contractDataList = contractDataList;
-    }
-
-    public String getCustomProjectName() {
-        return customProjectName;
-    }
-
-    public void setCustomProjectName(String customProjectName) {
-        this.customProjectName = customProjectName;
-    }
-
-    public Integer getDdbLength() {
-        return ddbLength;
-    }
-
-    public void setDdbLength(Integer ddbLength) {
-        this.ddbLength = ddbLength;
-    }
-
-    public Integer getDdbWidth() {
-        return ddbWidth;
-    }
-
-    public void setDdbWidth(Integer ddbWidth) {
-        this.ddbWidth = ddbWidth;
-    }
-
-    public Integer getDdbHeight() {
-        return ddbHeight;
-    }
-
-    public void setDdbHeight(Integer ddbHeight) {
-        this.ddbHeight = ddbHeight;
-    }
-
-    public Integer getYjbLength() {
-        return yjbLength;
-    }
-
-    public void setYjbLength(Integer yjbLength) {
-        this.yjbLength = yjbLength;
-    }
-
-    public Integer getYjbWidth() {
-        return yjbWidth;
-    }
-
-    public void setYjbWidth(Integer yjbWidth) {
-        this.yjbWidth = yjbWidth;
-    }
-
-    public Integer getYjbHeight() {
-        return yjbHeight;
-    }
-
-    public void setYjbHeight(Integer yjbHeight) {
-        this.yjbHeight = yjbHeight;
+    public void setOrderList(List<OrderVo> orderList) {
+        this.orderList = orderList;
     }
 }

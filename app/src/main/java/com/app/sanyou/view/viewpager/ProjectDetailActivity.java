@@ -33,7 +33,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
     private TextView deprecatedNumText;
 
     private ImageView ivIcon;
-    private String projectId;
+    private Integer projectId;
     private String projectName;
     private int position;
 
@@ -43,7 +43,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
 
-    private CallListener contractListener = new CallListener() {
+    private CallListener orderListener = new CallListener() {
         Gson gson = new Gson();
 
         @Override
@@ -57,7 +57,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
                     reserveNumText.setText(String.valueOf(projectVo.getReserveNum()));
                     deprecatedNumText.setText(String.valueOf(projectVo.getDeprecatedNum()));
 
-                    projectDetailAdapter.setDataSource(projectVo.getContractDataList());
+                    projectDetailAdapter.setDataSource(projectVo.getOrderList());
                 }
             });
         }
@@ -74,7 +74,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project_detail);
 
         Intent intent = getIntent();
-        projectId = intent.getStringExtra("projectId");
+        projectId = intent.getIntExtra("projectId",-1);
         projectName = intent.getStringExtra("projectName");
         position = intent.getIntExtra("position",0);
 
@@ -82,7 +82,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         initClickListener();
 
         projectNameText.setText(projectName == null ? "":projectName);
-        HttpUtil.get(Request.URL + "/app/project/getContractDetail?projectId=" + projectId, contractListener);
+        HttpUtil.get(Request.URL + "/app/order/getOrderList?projectId=" + projectId, orderListener);
     }
 
     private void initView() {

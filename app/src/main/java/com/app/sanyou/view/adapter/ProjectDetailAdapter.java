@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.sanyou.R;
-import com.app.sanyou.entity.ContractData;
+import com.app.sanyou.entity.OrderVo;
 
 import java.util.List;
 
@@ -20,13 +20,13 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
 
     private Context context;
 
-    private List<ContractData> dataSource;
+    private List<OrderVo> dataSource;
 
     public ProjectDetailAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDataSource(List<ContractData> dataSource){
+    public void setDataSource(List<OrderVo> dataSource){
         this.dataSource = dataSource;
         notifyDataSetChanged();
     }
@@ -40,13 +40,13 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ContractData contractData = dataSource.get(position);
+        OrderVo order = dataSource.get(position);
 
 //        if(position%2==1){
 //            holder.llItem.setBackgroundColor(context.getResources().getColor(R.color.gray));
 //        }
-        holder.contractIdText.setText(contractData.getContractId());
-        holder.contractNameText.setText(contractData.getContractName());
+        holder.orderCodeText.setText(order.getOrderCode());
+        holder.orderNameText.setText(order.getOrderName());
         if(position == dataSource.size()-1)
             holder.ivSpilt.setVisibility(View.GONE);
     }
@@ -60,16 +60,16 @@ public class ProjectDetailAdapter extends RecyclerView.Adapter<ProjectDetailAdap
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private LinearLayout llItem;
-        private TextView contractIdText;
-        private TextView contractNameText;
+        private TextView orderCodeText;
+        private TextView orderNameText;
         private ImageView ivSpilt;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             llItem = itemView.findViewById(R.id.llItem);
-            contractIdText = itemView.findViewById(R.id.contractId);
-            contractNameText = itemView.findViewById(R.id.contractName);
+            orderCodeText = itemView.findViewById(R.id.contractId);
+            orderNameText = itemView.findViewById(R.id.contractName);
             ivSpilt = itemView.findViewById(R.id.ivSpilt);
         }
     }
